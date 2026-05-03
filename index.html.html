@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="SE Business Club">
+<meta name="theme-color" content="#0F0C06">
+<title>SE Business Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#BE9C61;--gold2:#D4B882;--gold3:#9A8257;--gold4:#F5EDD8;
+  --dark:#0F0C06;--dark2:#1A1510;--dark3:#2A2218;
+  --muted:#7A6E60;--border:rgba(190,156,97,0.18);--border2:rgba(190,156,97,0.32);
+  --white:#FAF8F4;
+  --font-d:'Cormorant Garamond',Georgia,serif;
+  --font-b:'DM Sans',sans-serif;
+  --r:14px;--r2:20px;--tr:0.22s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font-b);background:var(--dark);color:var(--white);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 20% 20%,rgba(190,156,97,0.04) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(190,156,97,0.03) 0%,transparent 50%)}
+
+.view{display:none;min-height:100vh;position:relative;z-index:1}
+.view.active{display:block}
+
+/* LOGIN */
+#view-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem 1.5rem;background:var(--dark)}
+.login-logo-wrap{text-align:center;margin-bottom:2.5rem;animation:fadeUp 0.6s ease both}
+.login-logo-circle{width:90px;height:90px;border-radius:50%;border:1.5px solid var(--gold3);background:var(--dark2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.login-logo-circle svg{width:54px;height:54px}
+.login-title{font-family:var(--font-d);font-size:2rem;font-weight:600;color:var(--gold);letter-spacing:.02em}
+.login-sub{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.login-card{width:100%;max-width:400px;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;animation:fadeUp 0.6s .1s ease both}
+.login-card h2{font-family:var(--font-d);font-size:1.4rem;color:var(--gold2);margin-bottom:1.5rem;font-weight:500}
+.form-group{margin-bottom:1.2rem}
+.form-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
+.form-input{width:100%;padding:12px 14px;background:var(--dark3);border:1px solid var(--border);border-radius:var(--r);color:var(--white);font-family:var(--font-b);font-size:14px;outline:none;transition:border-color var(--tr)}
+.form-input:focus{border-color:var(--gold3)}
+.form-input::placeholder{color:var(--muted);opacity:.6}
+select.form-input option{background:var(--dark3);color:var(--white)}
+.btn-primary{width:100%;padding:13px;background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:14px;font-weight:500;letter-spacing:.06em;cursor:pointer;transition:background var(--tr),transform var(--tr);margin-top:.5rem}
+.btn-primary:hover{background:var(--gold2)}
+.btn-primary:active{transform:scale(.98)}
+.login-error{font-size:12px;color:#E57373;background:rgba(229,115,115,.1);border:1px solid rgba(229,115,115,.2);border-radius:8px;padding:8px 12px;margin-top:.8rem;display:none}
+.login-demo{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.8}
+.demo-chip{display:inline-block;background:var(--dark3);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--gold3);cursor:pointer;margin:2px;transition:border-color var(--tr)}
+.demo-chip:hover{border-color:var(--gold3)}
+
+/* APP */
+#view-app{display:none;flex-direction:column;min-height:100vh}
+#view-app.active{display:flex}
+
+.topbar{position:sticky;top:0;z-index:100;background:rgba(15,12,6,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
+.topbar-left{display:flex;align-items:center;gap:10px}
+.topbar-icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--gold3);background:var(--dark2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar-icon svg{width:20px;height:20px}
+.topbar-name{font-family:var(--font-d);font-size:1.15rem;color:var(--gold);font-weight:600;letter-spacing:.01em}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.lang-toggle{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:0;cursor:pointer;display:flex;overflow:hidden}
+.lang-opt{padding:5px 10px;font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--muted);transition:all var(--tr);border:none;background:transparent;cursor:pointer;font-family:var(--font-b)}
+.lang-opt.active{background:var(--gold);color:var(--dark)}
+.topbar-avatar{width:32px;height:32px;border-radius:50%;background:var(--dark3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--gold);cursor:pointer;letter-spacing:.02em}
+
+.app-content{flex:1;padding-bottom:80px}
+
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(15,12,6,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;height:66px;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all var(--tr);position:relative;padding:0}
+.nav-btn::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:24px;height:2px;background:var(--gold);border-radius:2px;transition:transform var(--tr)}
+.nav-btn.active::after{transform:translateX(-50%) scaleX(1)}
+.nav-icon{font-size:20px;transition:transform var(--tr)}
+.nav-btn.active .nav-icon{transform:translateY(-1px)}
+.nav-label{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;transition:color var(--tr)}
+.nav-btn.active .nav-label{color:var(--gold)}
+
+.screen{display:none;animation:fadeIn .3s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* HOME */
+.home-hero{background:var(--dark2);border-bottom:1px solid var(--border);padding:2rem 1.5rem 1.8rem;position:relative;overflow:hidden}
+.home-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(190,156,97,.08) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(190,156,97,.12);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin-bottom:1rem}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero-title{font-family:var(--font-d);font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1.2;margin-bottom:.5rem}
+.hero-sub{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.hero-greeting{font-size:13px;color:var(--gold3);margin-top:1rem}
+.home-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
+.stat-cell{background:var(--dark);padding:1rem .8rem;text-align:center}
+.stat-n{font-family:var(--font-d);font-size:1.6rem;color:var(--gold);font-weight:600}
+.stat-l{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.section-wrap{padding:1.5rem}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.section-title{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.section-link{font-size:11px;color:var(--gold3);cursor:pointer}
+.announce-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr),background var(--tr)}
+.announce-card:hover{border-color:var(--border2);background:var(--dark3)}
+.an-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.an-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(190,156,97,.12);color:var(--gold3);letter-spacing:.06em;text-transform:uppercase;font-weight:500;flex-shrink:0}
+.an-date{font-size:11px;color:var(--muted)}
+.an-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px;line-height:1.4}
+.an-body{font-size:12px;color:var(--muted);line-height:1.5}
+.event-mini{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;transition:border-color var(--tr)}
+.event-mini:hover{border-color:var(--border2)}
+.event-date-box{text-align:center;flex-shrink:0}
+.ev-month{font-size:10px;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase}
+.ev-day{font-family:var(--font-d);font-size:2rem;color:var(--gold);line-height:1;font-weight:600}
+.ev-info{flex:1}
+.ev-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:3px;line-height:1.3}
+.ev-meta{font-size:11px;color:var(--muted)}
+.ev-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;margin-top:6px;font-weight:500;letter-spacing:.04em}
+.badge-members{background:rgba(190,156,97,.15);color:var(--gold3)}
+.badge-open{background:rgba(29,158,117,.15);color:#5DCAA5}
+
+/* EVENTS */
+.events-wrap{padding:1.5rem}
+.event-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:1rem;cursor:pointer;transition:border-color var(--tr)}
+.event-card:hover{border-color:var(--border2)}
+.event-card-header{background:var(--dark3);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.event-card-date{display:flex;align-items:baseline;gap:6px}
+.ecd-month{font-size:11px;color:var(--gold3);letter-spacing:.08em;text-transform:uppercase}
+.ecd-day{font-family:var(--font-d);font-size:2.2rem;color:var(--gold);font-weight:600;line-height:1}
+.event-card-body{padding:1.2rem}
+.ec-title{font-family:var(--font-d);font-size:1.2rem;color:var(--white);font-weight:500;margin-bottom:4px;line-height:1.3}
+.ec-location{font-size:12px;color:var(--muted);margin-bottom:10px}
+.ec-desc{font-size:13px;color:rgba(250,248,244,.7);line-height:1.6;margin-bottom:1rem}
+.ec-rsvp{display:inline-block;padding:9px 20px;background:transparent;border:1px solid var(--gold3);border-radius:var(--r);color:var(--gold);font-size:12px;letter-spacing:.08em;cursor:pointer;font-family:var(--font-b);transition:all var(--tr)}
+.ec-rsvp:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:13px}
+.empty-icon{font-size:2.5rem;margin-bottom:.8rem;opacity:.5}
+
+/* MEMBERS */
+.members-wrap{padding:1.5rem}
+.member-search{display:flex;align-items:center;gap:10px;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:1.2rem}
+.member-search input{flex:1;background:none;border:none;outline:none;color:var(--white);font-family:var(--font-b);font-size:14px}
+.member-search input::placeholder{color:var(--muted)}
+.member-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr);display:flex;gap:1rem;align-items:flex-start}
+.member-card:hover{border-color:var(--border2)}
+.member-photo{width:56px;height:56px;border-radius:50%;background:var(--dark3);border:1.5px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.2rem;color:var(--gold);flex-shrink:0;overflow:hidden}
+.member-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.member-info{flex:1;min-width:0}
+.member-name{font-family:var(--font-d);font-size:1.1rem;color:var(--white);font-weight:500;margin-bottom:2px}
+.member-role-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;font-weight:500;letter-spacing:.05em;margin-bottom:6px}
+.role-chairman{background:rgba(190,156,97,.2);color:var(--gold)}
+.role-vice{background:rgba(190,156,97,.12);color:var(--gold3)}
+.role-advisor{background:rgba(93,202,165,.12);color:#5DCAA5}
+.role-founding,.role-individual{background:rgba(255,250,240,.06);color:var(--muted)}
+.role-corporate{background:rgba(83,74,183,.15);color:#AFA9EC}
+.member-bio{font-size:12px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(15,12,6,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:flex-end}
+.modal-overlay.open{display:flex;animation:fadeIn .2s ease}
+.modal-sheet{width:100%;max-height:88vh;background:var(--dark2);border-top:1px solid var(--border2);border-radius:24px 24px 0 0;overflow-y:auto;padding:1.5rem;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 1.5rem}
+.modal-member-top{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem}
+.modal-photo{width:72px;height:72px;border-radius:50%;background:var(--dark3);border:2px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.6rem;color:var(--gold);flex-shrink:0;overflow:hidden}
+.modal-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.modal-name{font-family:var(--font-d);font-size:1.4rem;color:var(--white);font-weight:500;line-height:1.2;margin-bottom:4px}
+.modal-role{font-size:12px;color:var(--gold3);letter-spacing:.05em}
+.modal-section-title{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;margin-top:1.2rem}
+.modal-bio{font-size:13px;color:rgba(250,248,244,.8);line-height:1.7}
+.modal-expertise{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.expertise-tag{font-size:11px;padding:4px 10px;background:var(--dark3);border:1px solid var(--border);border-radius:20px;color:var(--muted)}
+.modal-close{flex-shrink:0;background:var(--dark3);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--muted)}
+
+/* ABOUT */
+.about-hero{background:var(--dark2);border-bottom:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
+.about-logo{width:80px;height:80px;border-radius:50%;border:1.5px solid var(--gold3);background:var(--dark);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.about-logo svg{width:46px;height:46px}
+.about-title{font-family:var(--font-d);font-size:1.8rem;color:var(--gold);font-weight:600;margin-bottom:4px}
+.about-tagline{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.about-wrap{padding:1.5rem}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
+.value-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.value-icon{font-size:20px;margin-bottom:6px;display:block}
+.value-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px}
+.value-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.membership-cards{display:flex;gap:10px;margin-bottom:1.5rem}
+.mem-card{flex:1;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem}
+.mem-card.featured{border-color:var(--gold3)}
+.mem-type{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.mem-price{font-family:var(--font-d);font-size:1.8rem;color:var(--gold);font-weight:600;line-height:1}
+.mem-currency{font-size:13px;color:var(--gold3)}
+.mem-reg{font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px}
+.mem-label{font-size:10px;color:var(--gold3);margin-top:2px}
+.mem-perks{margin-top:10px}
+.mem-perk{font-size:11px;color:var(--muted);padding:2.5px 0;display:flex;gap:6px;align-items:flex-start;line-height:1.4}
+.perk-dot{width:4px;height:4px;border-radius:50%;background:var(--gold3);flex-shrink:0;margin-top:5px}
+.join-cta{background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r2);padding:1.5rem;text-align:center;margin-bottom:1.5rem}
+.join-cta-title{font-family:var(--font-d);font-size:1.3rem;color:var(--gold);margin-bottom:4px;font-weight:500}
+.join-cta-sub{font-size:12px;color:var(--muted);margin-bottom:1.2rem;line-height:1.5}
+.join-btns{display:flex;gap:10px}
+.btn-wa{flex:1;padding:11px;border-radius:var(--r);background:#1A6335;color:#fff;border:none;font-family:var(--font-b);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--tr);display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-wa:hover{background:#1F7A3E}
+.btn-email{flex:1;padding:11px;border-radius:var(--r);background:transparent;color:var(--gold3);border:1px solid var(--border2);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
+.btn-email:hover{border-color:var(--gold);color:var(--gold)}
+
+/* PROFILE */
+.profile-wrap{padding:1.5rem}
+.profile-header{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin-bottom:1.2rem;display:flex;gap:1rem;align-items:center}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--dark3);border:2px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.5rem;color:var(--gold);flex-shrink:0}
+.profile-name{font-family:var(--font-d);font-size:1.3rem;color:var(--white);font-weight:500}
+.profile-tier{font-size:11px;color:var(--gold3);margin-top:3px;letter-spacing:.06em}
+.profile-joined{font-size:11px;color:var(--muted);margin-top:3px}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem}
+.dash-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.dash-num{font-family:var(--font-d);font-size:2rem;color:var(--gold);font-weight:600}
+.dash-label{font-size:11px;color:var(--muted);margin-top:2px}
+.upcoming-item{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;gap:12px;align-items:center}
+.upcoming-date{font-family:var(--font-d);font-size:1.4rem;color:var(--gold);font-weight:600;text-align:center;flex-shrink:0;min-width:36px}
+.upcoming-title{font-size:13px;color:var(--white);font-weight:500}
+.upcoming-loc{font-size:11px;color:var(--muted);margin-top:2px}
+.btn-logout{width:100%;margin-top:1.5rem;padding:12px;background:transparent;border:1px solid rgba(229,115,115,.3);border-radius:var(--r);color:rgba(229,115,115,.7);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
+.btn-logout:hover{border-color:rgba(229,115,115,.6);color:#E57373}
+
+/* ADMIN */
+.admin-wrap{padding:1.5rem}
+.admin-title{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);font-weight:500}
+.admin-sub{font-size:12px;color:var(--muted);margin-top:2px;margin-bottom:1.5rem}
+.admin-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.5rem}
+.admin-tab{flex:1;padding:10px 6px;text-align:center;font-size:11px;color:var(--muted);cursor:pointer;background:transparent;border:none;font-family:var(--font-b);letter-spacing:.04em;transition:all var(--tr)}
+.admin-tab.active{background:var(--gold);color:var(--dark);font-weight:500}
+.admin-content{display:none}
+.admin-content.active{display:block;animation:fadeIn .2s ease}
+.admin-list-item{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ali-info{flex:1;min-width:0}
+.ali-title{font-size:13px;color:var(--white);font-weight:500}
+.ali-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.ali-actions{display:flex;gap:6px;flex-shrink:0}
+.btn-del{padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:var(--font-b);background:rgba(229,115,115,.1);color:#E57373;border:1px solid rgba(229,115,115,.2);transition:all var(--tr)}
+.btn-del:hover{background:rgba(229,115,115,.2)}
+.btn-add{width:100%;padding:12px;margin-bottom:1rem;background:var(--dark2);border:1px dashed var(--border2);border-radius:var(--r);color:var(--gold3);font-size:13px;font-family:var(--font-b);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all var(--tr)}
+.btn-add:hover{background:var(--dark3);border-color:var(--gold3)}
+.add-form{background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r2);padding:1.2rem;margin-bottom:1rem;display:none}
+.add-form.open{display:block;animation:fadeIn .2s ease}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn-save{padding:10px 20px;background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--tr)}
+.btn-save:hover{background:var(--gold2)}
+.btn-cancel{padding:10px 16px;background:transparent;border:1px solid var(--border);border-radius:var(--r);color:var(--muted);font-family:var(--font-b);font-size:13px;cursor:pointer;margin-left:8px}
+
+.divider{height:1px;background:var(--border);margin:1.2rem 0}
+.text-muted{color:var(--muted);font-size:12px}
+
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r);padding:10px 18px;font-size:13px;color:var(--gold);z-index:300;opacity:0;transition:all .3s ease;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.admin-badge{position:absolute;top:8px;right:calc(50% - 18px);width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--dark)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="view-login" class="view active">
+  <div class="login-logo-wrap">
+    <div class="login-logo-circle">
+      <svg viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="40" r="28" stroke="#BE9C61" stroke-width="1.5"/>
+        <text x="40" y="48" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="23" font-weight="600" fill="#BE9C61">SE</text>
+      </svg>
+    </div>
+    <div class="login-title">SE Business Club</div>
+    <div class="login-sub" data-zh="新中高管联盟" data-en="Singapore–China Executive Alliance">新中高管联盟</div>
+  </div>
+  <div class="login-card">
+    <h2 data-zh="会员登入" data-en="Member Login">会员登入</h2>
+    <div class="form-group">
+      <label class="form-label" data-zh="电子邮件" data-en="Email">电子邮件</label>
+      <input class="form-input" type="email" id="login-email" placeholder="your@email.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-zh="密码" data-en="Password">密码</label>
+      <input class="form-input" type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button class="btn-primary" onclick="doLogin()"><span data-zh="登入" data-en="Sign In">登入</span></button>
+    <div class="login-error" id="login-error"></div>
+    <div class="login-demo">
+      <div style="margin-bottom:6px;" data-zh="演示账号（点击填入）：" data-en="Demo accounts (click to fill):">演示账号（点击填入）：</div>
+      <span class="demo-chip" onclick="fillDemo('tony@sebusiness.club','admin123')" data-zh="管理员 Admin" data-en="Admin">管理员 Admin</span>
+      <span class="demo-chip" onclick="fillDemo('member@sebusiness.club','member123')" data-zh="普通会员" data-en="Member">普通会员</span>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="view-app" class="view">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-icon">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="13" stroke="#BE9C61" stroke-width="1"/>
+          <text x="20" y="24" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="10" font-weight="600" fill="#BE9C61">SE</text>
+        </svg>
+      </div>
+      <div class="topbar-name">SE Business Club</div>
+    </div>
+    <div class="topbar-right">
+      <div class="lang-toggle">
+        <button class="lang-opt active" onclick="setLang('zh')" id="lang-zh">中文</button>
+        <button class="lang-opt" onclick="setLang('en')" id="lang-en">EN</button>
+      </div>
+      <div class="topbar-avatar" id="topbar-avatar" onclick="goProfile()">TL</div>
+    </div>
+  </div>
+
+  <div class="app-content">
+
+    <!-- HOME -->
+    <div class="screen active" id="screen-home">
+      <div class="home-hero">
+        <div class="hero-badge"><span class="badge-dot"></span><span data-zh="创始会员招募中" data-en="Founding Membership Open">创始会员招募中</span></div>
+        <div class="hero-title" data-zh="欢迎回来" data-en="Welcome back">欢迎回来</div>
+        <div class="hero-greeting" id="hero-greeting"></div>
+        <div class="hero-sub" style="margin-top:6px;" data-zh="新加坡–中国高管联盟 · 邀请制私密平台" data-en="SG–China Executive Alliance · Invitation-only platform">新加坡–中国高管联盟 · 邀请制私密平台</div>
+      </div>
+      <div class="home-stats">
+        <div class="stat-cell"><div class="stat-n">SG</div><div class="stat-l" data-zh="新加坡" data-en="Singapore">新加坡</div></div>
+        <div class="stat-cell"><div class="stat-n" id="stat-members">3</div><div class="stat-l" data-zh="创始会员" data-en="Founding Members">创始会员</div></div>
+        <div class="stat-cell"><div class="stat-n">5%</div><div class="stat-l" data-zh="转介费率" data-en="Referral Rate">转介费率</div></div>
+      </div>
+      <div class="section-wrap">
+        <div class="section-head">
+          <div class="section-title" data-zh="最新公告" data-en="Announcements">最新公告</div>
+          <div class="section-link" onclick="showTab('events')" data-zh="查看全部" data-en="View all">查看全部</div>
+        </div>
+        <div id="home-announces"></div>
+      </div>
+      <div class="section-wrap" style="padding-top:0">
+        <div class="section-head">
+          <div class="section-title" data-zh="即将举行" data-en="Upcoming">即将举行</div>
+          <div class="section-link" onclick="showTab('events')" data-zh="全部活动" data-en="All events">全部活动</div>
+        </div>
+        <div id="home-events"></div>
+        <div class="empty-state" id="home-events-empty" style="display:none"><div class="empty-icon">📅</div><div data-zh="暂无活动，敬请期待" data-en="No upcoming events yet">暂无活动，敬请期待</div></div>
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="screen" id="screen-events">
+      <div class="events-wrap">
+        <div class="section-head" style="margin-bottom:1.2rem"><div class="section-title" data-zh="活动日历" data-en="Events Calendar">活动日历</div></div>
+        <div id="events-list"></div>
+        <div class="empty-state" id="events-empty" style="display:none"><div class="empty-icon">📅</div><div data-zh="活动即将公布，敬请期待" data-en="Events coming soon — stay tuned">活动即将公布，敬请期待</div></div>
+      </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="screen" id="screen-members">
+      <div class="members-wrap">
+        <div class="section-head" style="margin-bottom:1rem"><div class="section-title" data-zh="会员名片册" data-en="Member Directory">会员名片册</div></div>
+        <div class="member-search">
+          <span style="font-size:16px;color:var(--muted)">🔍</span>
+          <input type="text" id="member-search-input" placeholder="搜索会员..." oninput="renderMembers()">
+        </div>
+        <div id="members-list"></div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="screen" id="screen-about">
+      <div class="about-hero">
+        <div class="about-logo">
+          <svg viewBox="0 0 80 80" fill="none">
+            <circle cx="40" cy="40" r="28" stroke="#BE9C61" stroke-width="1.5"/>
+            <text x="40" y="48" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="23" font-weight="600" fill="#BE9C61">SE</text>
+          </svg>
+        </div>
+        <div class="about-title">SE Business Club</div>
+        <div class="about-tagline" data-zh="新加坡–中国高管联盟 · 邀请制" data-en="Singapore–China Executive Alliance · By Invitation">新加坡–中国高管联盟 · 邀请制</div>
+      </div>
+      <div class="about-wrap">
+        <div class="section-head"><div class="section-title" data-zh="核心价值观" data-en="Core Values">核心价值观</div></div>
+        <div class="values-grid">
+          <div class="value-card"><span class="value-icon">🔒</span><div class="value-name" data-zh="信任" data-en="Trust">信任</div><div class="value-desc" data-zh="严格审核，仅限受邀" data-en="Vetted, invitation-only">严格审核，仅限受邀</div></div>
+          <div class="value-card"><span class="value-icon">🌐</span><div class="value-name" data-zh="跨境" data-en="Cross-border">跨境</div><div class="value-desc" data-zh="专注新加坡与中国" data-en="SG–China focused">专注新加坡与中国</div></div>
+          <div class="value-card"><span class="value-icon">📋</span><div class="value-name" data-zh="规范" data-en="Structure">规范</div><div class="value-desc" data-zh="清晰的合作框架" data-en="Clear frameworks">清晰的合作框架</div></div>
+          <div class="value-card"><span class="value-icon">🤝</span><div class="value-name" data-zh="长期" data-en="Long-term">长期</div><div class="value-desc" data-zh="着眼长远，非短期利益" data-en="Sustainable relationships">着眼长远，非短期利益</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="section-head"><div class="section-title" data-zh="会员等级" data-en="Membership Tiers">会员等级</div></div>
+        <div class="membership-cards">
+          <div class="mem-card">
+            <div class="mem-type" data-zh="个人会员" data-en="Individual">个人会员</div>
+            <div class="mem-price"><span class="mem-currency">S$</span>988</div>
+            <div class="mem-reg" data-zh="正常价 S$1,688" data-en="Regular S$1,688">正常价 S$1,688</div>
+            <div class="mem-label" data-zh="创始优惠价" data-en="Founding rate">创始优惠价</div>
+            <div class="mem-perks">
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="创始会员认证" data-en="Founding recognition">创始会员认证</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="优先参与活动" data-en="Priority event access">优先参与活动</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="闭门交流资格" data-en="Closed-door sessions">闭门交流资格</span></div>
+            </div>
+          </div>
+          <div class="mem-card featured">
+            <div class="mem-type" data-zh="企业会员 (3位代表)" data-en="Corporate (3 reps)">企业会员 (3位代表)</div>
+            <div class="mem-price"><span class="mem-currency">S$</span>1,988</div>
+            <div class="mem-reg" data-zh="正常价 S$3,688" data-en="Regular S$3,688">正常价 S$3,688</div>
+            <div class="mem-label" data-zh="创始优惠价" data-en="Founding rate">创始优惠价</div>
+            <div class="mem-perks">
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="3位代表全享权益" data-en="All privileges × 3 reps">3位代表全享权益</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="品牌曝光优先权" data-en="Brand visibility">品牌曝光优先权</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="项目洽谈优先" data-en="Priority project briefings">项目洽谈优先</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="join-cta">
+          <div class="join-cta-title" data-zh="申请加入" data-en="Apply for Membership">申请加入</div>
+          <div class="join-cta-sub" data-zh="仅限受邀或现有会员推荐 · 创始名额有限，先到先得" data-en="By invitation or referral only · Limited founding places">仅限受邀或现有会员推荐 · 创始名额有限，先到先得</div>
+          <div class="join-btns">
+            <button class="btn-wa" onclick="openWA()"><span>💬</span>WhatsApp</button>
+            <button class="btn-email" onclick="openEmail()"><span data-zh="发送邮件" data-en="Email Us">发送邮件</span></button>
+          </div>
+        </div>
+        <div class="text-muted" style="text-align:center;padding-bottom:.5rem">
+          <a href="mailto:tonyliew@sebusiness.club" style="color:var(--gold3);text-decoration:none;font-size:12px">tonyliew@sebusiness.club</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="screen" id="screen-profile">
+      <div class="profile-wrap" id="profile-content"></div>
+    </div>
+
+    <!-- ADMIN -->
+    <div class="screen" id="screen-admin">
+      <div class="admin-wrap">
+        <div class="admin-title" data-zh="管理后台" data-en="Admin Panel">管理后台</div>
+        <div class="admin-sub" data-zh="管理会员、活动及公告内容" data-en="Manage members, events and announcements">管理会员、活动及公告内容</div>
+        <div class="admin-tabs">
+          <button class="admin-tab active" onclick="adminTab('members')"><span data-zh="会员" data-en="Members">会员</span></button>
+          <button class="admin-tab" onclick="adminTab('events')"><span data-zh="活动" data-en="Events">活动</span></button>
+          <button class="admin-tab" onclick="adminTab('announces')"><span data-zh="公告" data-en="Announcements">公告</span></button>
+        </div>
+        <!-- Members -->
+        <div class="admin-content active" id="admin-members">
+          <button class="btn-add" onclick="toggleForm('add-member-form')"><span>＋</span><span data-zh="添加会员" data-en="Add Member">添加会员</span></button>
+          <div class="add-form" id="add-member-form">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" data-zh="姓名" data-en="Name">姓名</label><input class="form-input" id="nm-name" placeholder="Wang Yan"></div>
+              <div class="form-group"><label class="form-label" data-zh="职称（中文）" data-en="Role (ZH)">职称</label><input class="form-input" id="nm-role" placeholder="主席"></div>
+            </div>
+            <div class="form-group"><label class="form-label" data-zh="人物简介（中文）" data-en="Bio (Chinese)">人物简介</label><textarea class="form-input" id="nm-bio" rows="3" placeholder="人物简介与故事..."></textarea></div>
+            <div class="form-group"><label class="form-label" data-zh="人物简介（英文）" data-en="Bio (English)">简介（英文）</label><textarea class="form-input" id="nm-bio-en" rows="2" placeholder="English bio..."></textarea></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" data-zh="会员等级" data-en="Tier">等级</label>
+                <select class="form-input" id="nm-tier">
+                  <option value="founding">创始会员</option>
+                  <option value="corporate">企业会员</option>
+                  <option value="individual">个人会员</option>
+                  <option value="chairman">主席</option>
+                  <option value="vice">副主席</option>
+                  <option value="advisor">顾问</option>
+                </select>
+              </div>
+              <div class="form-group"><label class="form-label" data-zh="专业领域" data-en="Expertise">专业领域</label><input class="form-input" id="nm-exp" placeholder="教育,跨境,投资"></div>
+            </div>
+            <button class="btn-save" onclick="addMember()" data-zh="保存" data-en="Save">保存</button>
+            <button class="btn-cancel" onclick="toggleForm('add-member-form')" data-zh="取消" data-en="Cancel">取消</button>
+          </div>
+          <div id="admin-members-list"></div>
+        </div>
+        <!-- Events -->
+        <div class="admin-content" id="admin-events">
+          <button class="btn-add" onclick="toggleForm('add-event-form')"><span>＋</span><span data-zh="添加活动" data-en="Add Event">添加活动</span></button>
+          <div class="add-form" id="add-event-form">
+            <div class="form-group"><label class="form-label" data-zh="活动名称" data-en="Title">活动名称</label><input class="form-input" id="ne-title" placeholder="创始晚宴"></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" data-zh="日期" data-en="Date">日期</label><input class="form-input" type="date" id="ne-date"></div>
+              <div class="form-group"><label class="form-label" data-zh="类型" data-en="Type">类型</label>
+                <select class="form-input" id="ne-type">
+                  <option value="members" data-zh="会员专属" data-en="Members Only">会员专属</option>
+                  <option value="open" data-zh="公开" data-en="Open">公开</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group"><label class="form-label" data-zh="地点" data-en="Location">地点</label><input class="form-input" id="ne-loc" placeholder="新加坡 · 待定"></div>
+            <div class="form-group"><label class="form-label" data-zh="活动简介" data-en="Description">活动简介</label><input class="form-input" id="ne-desc" placeholder="活动内容介绍..."></div>
+            <button class="btn-save" onclick="addEvent()" data-zh="保存" data-en="Save">保存</button>
+            <button class="btn-cancel" onclick="toggleForm('add-event-form')" data-zh="取消" data-en="Cancel">取消</button>
+          </div>
+          <div id="admin-events-list"></div>
+        </div>
+        <!-- Announcements -->
+        <div class="admin-content" id="admin-announces">
+          <button class="btn-add" onclick="toggleForm('add-announce-form')"><span>＋</span><span data-zh="发布公告" data-en="Post Announcement">发布公告</span></button>
+          <div class="add-form" id="add-announce-form">
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" data-zh="标题" data-en="Title">标题</label><input class="form-input" id="na-title" placeholder="公告标题"></div>
+              <div class="form-group"><label class="form-label" data-zh="标签" data-en="Tag">标签</label>
+                <select class="form-input" id="na-tag">
+                  <option>活动</option><option>会员</option><option>重要</option><option>通知</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group"><label class="form-label" data-zh="内容" data-en="Content">内容</label><textarea class="form-input" id="na-body" rows="3" placeholder="公告内容..."></textarea></div>
+            <button class="btn-save" onclick="addAnnouncement()" data-zh="发布" data-en="Publish">发布</button>
+            <button class="btn-cancel" onclick="toggleForm('add-announce-form')" data-zh="取消" data-en="Cancel">取消</button>
+          </div>
+          <div id="admin-announces-list"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- app-content -->
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="showTab('home')">
+      <span class="nav-icon">🏠</span><span class="nav-label" data-zh="首页" data-en="Home">首页</span>
+    </button>
+    <button class="nav-btn" id="nav-events" onclick="showTab('events')">
+      <span class="nav-icon">📅</span><span class="nav-label" data-zh="活动" data-en="Events">活动</span>
+    </button>
+    <button class="nav-btn" id="nav-members" onclick="showTab('members')">
+      <span class="nav-icon">👥</span><span class="nav-label" data-zh="会员" data-en="Members">会员</span>
+    </button>
+    <button class="nav-btn" id="nav-about" onclick="showTab('about')">
+      <span class="nav-icon">📋</span><span class="nav-label" data-zh="关于" data-en="About">关于</span>
+    </button>
+    <button class="nav-btn" id="nav-admin" onclick="showTab('admin')" style="display:none;position:relative">
+      <span class="nav-icon">⚙️</span><span class="nav-label" data-zh="管理" data-en="Admin">管理</span>
+      <span class="admin-badge"></span>
+    </button>
+  </nav>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="member-modal" onclick="closeMemberModal(event)">
+  <div class="modal-sheet"><div class="modal-handle"></div><div id="modal-inner"></div></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+let currentUser=null,currentLang='zh',nextId=200;
+
+const USERS={
+  'tony@sebusiness.club':{pass:'admin123',role:'admin',name:'Tony Liew',initials:'TL',joinDate:'2025年5月',tier:'创始会员（副主席）'},
+  'member@sebusiness.club':{pass:'member123',role:'member',name:'Wang Yan',initials:'WY',joinDate:'2025年5月',tier:'创始会员（主席）'}
+};
+
+let DATA={
+  members:[
+    {id:1,name:'Wang Yan',nameZh:'王燕',initials:'WY',role:'主席 Chairman',roleEn:'Chairman',tier:'chairman',
+     bio:'王燕在跨境教育与企业发展领域深耕多年，在新加坡与中国两地建立了深厚的商业人脉与影响力。她以坚定的信念推动新中两地的商业合作，相信高质量的人脉关系是跨境成功的根本。作为 SE 商务俱乐部的创始主席，她致力于打造一个基于信任、开放与长远视野的精英商业生态圈。',
+     bioEn:'Wang Yan has built deep expertise in cross-border education and enterprise development between Singapore and China. She believes high-quality relationships are the foundation of cross-border success, and as Founding Chairman of SE Business Club, she is committed to building a trust-based elite business ecosystem.',
+     expertise:['跨境教育','企业发展','新中商业','人脉建设'],photo:null},
+    {id:2,name:'Tony Liew',nameZh:'刘先生',initials:'TL',role:'副主席 Vice Chairman',roleEn:'Vice Chairman',tier:'vice',
+     bio:'Tony Liew 是新加坡商业生态圈中极具经验的咨询顾问，专注于帮助中国企业进入新加坡市场，以及协助本地企业拓展海外版图。他深谙新加坡的监管环境、商业文化与执行逻辑，多年来参与了众多国际市场拓展项目，是跨境商业结构设计领域的专家。',
+     bioEn:'Tony Liew is an experienced Singapore-based business consultant specializing in cross-border market expansion and business structure design. He has guided numerous enterprises through Singapore\'s regulatory landscape and helped local businesses expand internationally.',
+     expertise:['新加坡市场','跨境架构','合规咨询','商业策略'],photo:null},
+    {id:3,name:'Vincent',nameZh:'Vincent',initials:'V',role:'创始会员 · 红杉资本股东',roleEn:'Founding Member · Hongshan Capital',tier:'corporate',
+     bio:'Vincent 作为红杉资本的股东，将专业的资本视野与丰富的投资经验带入 SE 商务俱乐部。他深入理解投资结构、尽职调查流程与资本配置策略，积极协助会员把握新加坡与中国两地的融资与增长机遇，并为俱乐部提供宝贵的市场洞见。',
+     bioEn:'Vincent brings sophisticated capital expertise as a Hongshan Capital shareholder. He provides strategic investment insights on market trends, valuation and capital allocation, actively supporting members in accessing growth and funding opportunities across Singapore and China.',
+     expertise:['资本投资','私募基金','市场分析','跨境融资'],photo:null}
+  ],
+  events:[],
+  announcements:[
+    {id:1,tag:'会员',tagEn:'Membership',title:'创始会员名额现已开放',titleEn:'Founding Membership Now Open',body:'为保持俱乐部品质，创始会员名额有限。个人会员创始价 S$988，企业会员 S$1,988（3位代表）。仅限受邀或推荐。',bodyEn:'Founding membership is now open with limited slots. Individual S$988 · Corporate S$1,988 (3 reps). Invitation or referral required.',date:'2025年5月'},
+    {id:2,tag:'活动',tagEn:'Event',title:'创始晚宴 — 敬请期待',titleEn:'Inaugural Gala Dinner — Save the Date',body:'创始会员专属启动晚宴，正式宣告联盟成立。日期与地点即将公布，敬请关注。',bodyEn:'Exclusive launch event for founding members. Formal introduction and alliance establishment ceremony. Date and venue to be announced.',date:'2025年6月'}
+  ]
+};
+
+// AUTH
+function fillDemo(e,p){document.getElementById('login-email').value=e;document.getElementById('login-pass').value=p}
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim().toLowerCase();
+  const pass=document.getElementById('login-pass').value;
+  const err=document.getElementById('login-error');
+  const u=USERS[email];
+  if(u&&u.pass===pass){
+    currentUser={email,...u};err.style.display='none';enterApp();
+  }else{
+    err.style.display='block';
+    err.textContent=currentLang==='zh'?'邮件或密码有误，请重试。':'Incorrect email or password.';
+  }
+}
+document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
+
+function enterApp(){
+  document.getElementById('view-login').style.display='none';
+  const app=document.getElementById('view-app');
+  app.style.display='flex';setTimeout(()=>app.classList.add('active'),10);
+  document.getElementById('topbar-avatar').textContent=currentUser.initials;
+  if(currentUser.role==='admin')document.getElementById('nav-admin').style.display='flex';
+  updateGreeting();renderAll();updateLang();
+}
+function doLogout(){
+  currentUser=null;
+  document.getElementById('view-app').classList.remove('active');
+  document.getElementById('view-app').style.display='none';
+  document.getElementById('view-login').style.display='flex';
+  document.getElementById('nav-admin').style.display='none';
+  showTab('home');
+}
+function updateGreeting(){
+  if(!currentUser)return;
+  document.getElementById('hero-greeting').textContent=currentLang==='zh'?`${currentUser.name}，您好 👋`:`Hello, ${currentUser.name} 👋`;
+}
+
+// LANG
+function setLang(l){
+  currentLang=l;
+  document.getElementById('lang-zh').classList.toggle('active',l==='zh');
+  document.getElementById('lang-en').classList.toggle('active',l==='en');
+  document.documentElement.lang=l;
+  document.getElementById('member-search-input').placeholder=l==='zh'?'搜索会员...':'Search members...';
+  updateGreeting();updateLang();renderAll();
+}
+function updateLang(){
+  document.querySelectorAll('[data-zh]').forEach(el=>{
+    el.textContent=currentLang==='zh'?el.dataset.zh:el.dataset.en;
+  });
+}
+
+// NAV
+function showTab(tab){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('screen-'+tab).classList.add('active');
+  const nb=document.getElementById('nav-'+tab);
+  if(nb)nb.classList.add('active');
+  if(tab==='admin')renderAdminLists();
+}
+function goProfile(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('screen-profile').classList.add('active');
+  renderProfile();
+}
+
+// RENDER ALL
+function renderAll(){
+  renderHomeAnnounces();renderHomeEvents();renderEventsList();renderMembers();
+  if(currentUser?.role==='admin')renderAdminLists();
+}
+
+// HOME ANNOUNCES
+function renderHomeAnnounces(){
+  document.getElementById('home-announces').innerHTML=DATA.announcements.slice(0,2).map(a=>`
+    <div class="announce-card">
+      <div class="an-top"><span class="an-tag">${currentLang==='zh'?a.tag:a.tagEn}</span><span class="an-date">${a.date}</span></div>
+      <div class="an-title">${currentLang==='zh'?a.title:a.titleEn}</div>
+      <div class="an-body">${currentLang==='zh'?a.body:a.bodyEn}</div>
+    </div>`).join('');
+}
+
+// HOME EVENTS
+function renderHomeEvents(){
+  const c=document.getElementById('home-events'),empty=document.getElementById('home-events-empty');
+  if(!DATA.events.length){c.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  c.innerHTML=DATA.events.slice(0,2).map(ev=>{
+    const d=ev.date?new Date(ev.date):null;
+    const day=d?d.getDate():'—';
+    const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—';
+    return `<div class="event-mini">
+      <div class="event-date-box"><div class="ev-month">${month}</div><div class="ev-day">${day}</div></div>
+      <div class="ev-info">
+        <div class="ev-title">${ev.title}</div>
+        <div class="ev-meta">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div>
+        <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
+      </div></div>`;
+  }).join('');
+}
+
+// EVENTS LIST
+function renderEventsList(){
+  const c=document.getElementById('events-list'),empty=document.getElementById('events-empty');
+  if(!DATA.events.length){c.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  c.innerHTML=DATA.events.map(ev=>{
+    const d=ev.date?new Date(ev.date):null;
+    const day=d?d.getDate():'TBC';
+    const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}).toUpperCase():'—';
+    return `<div class="event-card">
+      <div class="event-card-header">
+        <div class="event-card-date"><span class="ecd-month">${month}</span><span class="ecd-day">${day}</span></div>
+        <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
+      </div>
+      <div class="event-card-body">
+        <div class="ec-title">${ev.title}</div>
+        <div class="ec-location">📍 ${ev.location||(currentLang==='zh'?'地点待定':'Venue TBC')}</div>
+        ${ev.desc?`<div class="ec-desc">${ev.desc}</div>`:''}
+        <button class="ec-rsvp" onclick="rsvpEvent()">${currentLang==='zh'?'报名 / 表达意向':'RSVP / Express Interest'}</button>
+      </div></div>`;
+  }).join('');
+}
+
+// MEMBERS
+function renderMembers(){
+  const q=(document.getElementById('member-search-input')?.value||'').toLowerCase();
+  const filtered=DATA.members.filter(m=>m.name.toLowerCase().includes(q)||(m.nameZh||'').includes(q)||m.role.toLowerCase().includes(q));
+  document.getElementById('members-list').innerHTML=filtered.map(m=>`
+    <div class="member-card" onclick="openMemberModal(${m.id})">
+      <div class="member-photo">${m.photo?`<img src="${m.photo}" alt="${m.name}">`:(m.initials||'?')}</div>
+      <div class="member-info">
+        <div class="member-name">${m.name}${m.nameZh&&m.nameZh!==m.name?` <span style="font-size:.85em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
+        <span class="member-role-badge role-${m.tier}">${currentLang==='zh'?m.role:(m.roleEn||m.role)}</span>
+        <div class="member-bio">${currentLang==='zh'?m.bio:(m.bioEn||m.bio)}</div>
+      </div></div>`).join('');
+}
+
+// MODAL
+function openMemberModal(id){
+  const m=DATA.members.find(x=>x.id===id);if(!m)return;
+  document.getElementById('modal-inner').innerHTML=`
+    <div class="modal-member-top">
+      <div class="modal-photo">${m.photo?`<img src="${m.photo}" alt="${m.name}">`:m.initials}</div>
+      <div style="flex:1">
+        <div class="modal-name">${m.name}${m.nameZh&&m.nameZh!==m.name?`<br><span style="font-size:.75em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
+        <div class="modal-role">${currentLang==='zh'?m.role:(m.roleEn||m.role)}</div>
+      </div>
+      <div class="modal-close" onclick="closeMemberModal()">✕</div>
+    </div>
+    <div class="modal-section-title">${currentLang==='zh'?'人物简介':'Profile'}</div>
+    <div class="modal-bio">${currentLang==='zh'?m.bio:(m.bioEn||m.bio)}</div>
+    ${m.expertise?.length?`<div class="modal-section-title">${currentLang==='zh'?'专业领域':'Expertise'}</div>
+    <div class="modal-expertise">${m.expertise.map(e=>`<span class="expertise-tag">${e}</span>`).join('')}</div>`:''}`;
+  document.getElementById('member-modal').classList.add('open');
+}
+function closeMemberModal(e){
+  if(!e||e.target===document.getElementById('member-modal'))
+    document.getElementById('member-modal').classList.remove('open');
+}
+
+// PROFILE
+function renderProfile(){
+  if(!currentUser)return;
+  document.getElementById('profile-content').innerHTML=`
+    <div class="profile-header">
+      <div class="profile-avatar">${currentUser.initials}</div>
+      <div>
+        <div class="profile-name">${currentUser.name}</div>
+        <div class="profile-tier">${currentUser.tier}</div>
+        <div class="profile-joined">${currentLang==='zh'?'加入日期：':'Joined: '}${currentUser.joinDate}</div>
+      </div>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-card"><div class="dash-num">${DATA.events.length}</div><div class="dash-label">${currentLang==='zh'?'即将举行的活动':'Upcoming events'}</div></div>
+      <div class="dash-card"><div class="dash-num">0</div><div class="dash-label">${currentLang==='zh'?'洽谈中项目':'Active projects'}</div></div>
+    </div>
+    <div class="section-head" style="margin-bottom:.8rem"><div class="section-title">${currentLang==='zh'?'我的活动':'My Events'}</div></div>
+    ${DATA.events.length?DATA.events.slice(0,3).map(ev=>{
+      const d=ev.date?new Date(ev.date):null;
+      return `<div class="upcoming-item">
+        <div class="upcoming-date">${d?d.getDate():'—'}</div>
+        <div><div class="upcoming-title">${ev.title}</div><div class="upcoming-loc">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div></div>
+      </div>`;
+    }).join(''):`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无已报名活动':'No events registered yet'}</div>`}
+    <div class="section-head" style="margin-top:1.2rem;margin-bottom:.8rem"><div class="section-title">${currentLang==='zh'?'洽谈中项目':'Projects in Discussion'}</div></div>
+    <div class="text-muted" style="padding:.5rem 0 1rem">${currentLang==='zh'?'暂无项目。由管理员分配后将在此显示。':'No projects yet. Admin will assign when available.'}</div>
+    <button class="btn-logout" onclick="doLogout()">${currentLang==='zh'?'退出登入':'Sign Out'}</button>`;
+}
+
+// ADMIN
+function renderAdminLists(){
+  document.getElementById('admin-members-list').innerHTML=DATA.members.map(m=>`
+    <div class="admin-list-item">
+      <div class="ali-info"><div class="ali-title">${m.name}</div><div class="ali-meta">${m.role}</div></div>
+      <div class="ali-actions"><button class="btn-del" onclick="deleteMember(${m.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
+    </div>`).join('');
+  document.getElementById('admin-events-list').innerHTML=DATA.events.length
+    ?DATA.events.map(ev=>`
+      <div class="admin-list-item">
+        <div class="ali-info"><div class="ali-title">${ev.title}</div><div class="ali-meta">${ev.date||'TBC'} · ${ev.location||'—'}</div></div>
+        <div class="ali-actions"><button class="btn-del" onclick="deleteEvent(${ev.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
+      </div>`)
+    .join(''):`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无活动':'No events yet'}</div>`;
+  document.getElementById('admin-announces-list').innerHTML=DATA.announcements.map(a=>`
+    <div class="admin-list-item">
+      <div class="ali-info"><div class="ali-title">${a.title}</div><div class="ali-meta">${a.tag} · ${a.date}</div></div>
+      <div class="ali-actions"><button class="btn-del" onclick="deleteAnnouncement(${a.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
+    </div>`).join('');
+}
+
+function adminTab(tab){
+  const tabs=['members','events','announces'];
+  document.querySelectorAll('.admin-tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===tab));
+  tabs.forEach(t=>document.getElementById('admin-'+t).classList.toggle('active',t===tab));
+}
+
+// CRUD
+function addMember(){
+  const name=document.getElementById('nm-name').value.trim();
+  if(!name){showToast(currentLang==='zh'?'请填写姓名':'Please enter a name');return;}
+  DATA.members.push({
+    id:nextId++,name,nameZh:name,
+    initials:name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2),
+    role:document.getElementById('nm-role').value||'会员',
+    roleEn:document.getElementById('nm-role').value||'Member',
+    tier:document.getElementById('nm-tier').value,
+    bio:document.getElementById('nm-bio').value,
+    bioEn:document.getElementById('nm-bio-en').value,
+    expertise:document.getElementById('nm-exp').value.split(',').map(s=>s.trim()).filter(Boolean),
+    photo:null
+  });
+  ['nm-name','nm-role','nm-bio','nm-bio-en','nm-exp'].forEach(id=>document.getElementById(id).value='');
+  toggleForm('add-member-form');renderAll();
+  document.getElementById('stat-members').textContent=DATA.members.length;
+  showToast(currentLang==='zh'?'✓ 会员已添加':'✓ Member added');
+}
+function deleteMember(id){
+  DATA.members=DATA.members.filter(m=>m.id!==id);renderAll();
+  document.getElementById('stat-members').textContent=DATA.members.length;
+  showToast(currentLang==='zh'?'已删除':'Deleted');
+}
+function addEvent(){
+  const title=document.getElementById('ne-title').value.trim();
+  if(!title){showToast(currentLang==='zh'?'请填写活动名称':'Please enter a title');return;}
+  DATA.events.push({id:nextId++,title,date:document.getElementById('ne-date').value,location:document.getElementById('ne-loc').value,desc:document.getElementById('ne-desc').value,type:document.getElementById('ne-type').value});
+  ['ne-title','ne-date','ne-loc','ne-desc'].forEach(id=>document.getElementById(id).value='');
+  toggleForm('add-event-form');renderAll();
+  showToast(currentLang==='zh'?'✓ 活动已添加':'✓ Event added');
+}
+function deleteEvent(id){DATA.events=DATA.events.filter(e=>e.id!==id);renderAll();showToast(currentLang==='zh'?'已删除':'Deleted')}
+function addAnnouncement(){
+  const title=document.getElementById('na-title').value.trim();
+  if(!title){showToast(currentLang==='zh'?'请填写标题':'Please enter a title');return;}
+  const now=new Date();
+  DATA.announcements.unshift({id:nextId++,tag:document.getElementById('na-tag').value,tagEn:document.getElementById('na-tag').value,title,titleEn:title,body:document.getElementById('na-body').value,bodyEn:document.getElementById('na-body').value,date:`${now.getFullYear()}年${now.getMonth()+1}月`});
+  ['na-title','na-body'].forEach(id=>document.getElementById(id).value='');
+  toggleForm('add-announce-form');renderAll();
+  showToast(currentLang==='zh'?'✓ 公告已发布':'✓ Announcement published');
+}
+function deleteAnnouncement(id){DATA.announcements=DATA.announcements.filter(a=>a.id!==id);renderAll();showToast(currentLang==='zh'?'已删除':'Deleted')}
+
+// HELPERS
+function toggleForm(id){document.getElementById(id).classList.toggle('open')}
+function rsvpEvent(){openWA();showToast(currentLang==='zh'?'正在跳转 WhatsApp...':'Opening WhatsApp...')}
+function openWA(){window.open('https://wa.me/6594454566?text='+encodeURIComponent(currentLang==='zh'?'您好，我有意加入 SE Business Club，请问如何申请？':'Hello, I am interested in joining SE Business Club. How may I apply?'),'_blank')}
+function openEmail(){window.location.href='mailto:tonyliew@sebusiness.club?subject='+encodeURIComponent(currentLang==='zh'?'SE Business Club 入会咨询':'SE Business Club Membership Enquiry')}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
+
+updateLang();
+</script>
+</body>
+</html>
