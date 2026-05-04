@@ -4,266 +4,296 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SE Business Club">
-<meta name="theme-color" content="#0F0C06">
+<meta name="theme-color" content="#FFFFFF">
 <title>SE Business Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold:#BE9C61;--gold2:#D4B882;--gold3:#9A8257;--gold4:#F5EDD8;
-  --dark:#FFFFFF;--dark2:#F5F5F5;--dark3:#2A2218;
-  --muted:#7A6E60;--border:rgba(190,156,97,0.18);--border2:rgba(190,156,97,0.32);
-  --white:#1A1510;
+  --dark:#1A1510;--dark2:#F7F4EF;--dark3:#EDEAE4;
+  --ink:#1C1812;--ink2:#3A3228;
+  --muted:#8A7E6E;
+  --border:rgba(154,130,87,0.18);--border2:rgba(154,130,87,0.35);
+  --white:#FFFFFF;--surface:#FAF8F4;
   --font-d:'Cormorant Garamond',Georgia,serif;
   --font-b:'DM Sans',sans-serif;
   --r:14px;--r2:20px;--tr:0.22s cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:var(--font-b);background:var(--dark);color:var(--white);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--dark)}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(circle at 20% 20%,rgba(190,156,97,0.04) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(190,156,97,0.03) 0%,transparent 50%)}
+body{font-family:var(--font-b);background:var(--white);color:var(--ink);min-height:100vh;overflow-x:hidden;font-size:15px;line-height:1.6}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:#f0ede8}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
 
 .view{display:none;min-height:100vh;position:relative;z-index:1}
 .view.active{display:block}
 
 /* LOGIN */
-#view-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem 1.5rem;background:var(--dark)}
+#view-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem 1.5rem;background:linear-gradient(160deg,#FFFDF9 0%,#F5EDD8 100%)}
 .login-logo-wrap{text-align:center;margin-bottom:2.5rem;animation:fadeUp 0.6s ease both}
-.login-logo-circle{width:90px;height:90px;border-radius:50%;border:1.5px solid var(--gold3);background:var(--dark2);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
-.login-logo-circle svg{width:54px;height:54px}
-.login-title{font-family:var(--font-d);font-size:2rem;font-weight:600;color:var(--gold);letter-spacing:.02em}
+.login-logo-circle{width:100px;height:100px;border-radius:50%;border:2px solid var(--gold3);background:var(--white);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 4px 24px rgba(190,156,97,0.15)}
+.login-logo-img{width:70px;height:70px;object-fit:contain;border-radius:50%}
+.login-title{font-family:var(--font-d);font-size:2rem;font-weight:600;color:var(--ink);letter-spacing:.02em}
 .login-sub{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
-.login-card{width:100%;max-width:400px;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;animation:fadeUp 0.6s .1s ease both}
-.login-card h2{font-family:var(--font-d);font-size:1.4rem;color:var(--gold2);margin-bottom:1.5rem;font-weight:500}
+.login-card{width:100%;max-width:400px;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;animation:fadeUp 0.6s .1s ease both;box-shadow:0 8px 32px rgba(154,130,87,0.08)}
+.login-card h2{font-family:var(--font-d);font-size:1.4rem;color:var(--ink);margin-bottom:1.5rem;font-weight:500}
 .form-group{margin-bottom:1.2rem}
 .form-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
-.form-input{width:100%;padding:12px 14px;background:var(--dark3);border:1px solid var(--border);border-radius:var(--r);color:var(--white);font-family:var(--font-b);font-size:14px;outline:none;transition:border-color var(--tr)}
-.form-input:focus{border-color:var(--gold3)}
+.form-input{width:100%;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);color:var(--ink);font-family:var(--font-b);font-size:14px;outline:none;transition:border-color var(--tr)}
+.form-input:focus{border-color:var(--gold)}
 .form-input::placeholder{color:var(--muted);opacity:.6}
-select.form-input option{background:var(--dark3);color:var(--white)}
-.btn-primary{width:100%;padding:13px;background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:14px;font-weight:500;letter-spacing:.06em;cursor:pointer;transition:background var(--tr),transform var(--tr);margin-top:.5rem}
-.btn-primary:hover{background:var(--gold2)}
+select.form-input option{background:var(--white);color:var(--ink)}
+textarea.form-input{resize:vertical;min-height:80px}
+.btn-primary{width:100%;padding:13px;background:var(--dark);color:var(--gold2);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:14px;font-weight:500;letter-spacing:.06em;cursor:pointer;transition:background var(--tr),transform var(--tr);margin-top:.5rem}
+.btn-primary:hover{background:var(--ink2)}
 .btn-primary:active{transform:scale(.98)}
-.login-error{font-size:12px;color:#E57373;background:rgba(229,115,115,.1);border:1px solid rgba(229,115,115,.2);border-radius:8px;padding:8px 12px;margin-top:.8rem;display:none}
+.login-error{font-size:12px;color:#C0392B;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.2);border-radius:8px;padding:8px 12px;margin-top:.8rem;display:none}
 .login-demo{margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center;line-height:1.8}
-.demo-chip{display:inline-block;background:var(--dark3);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--gold3);cursor:pointer;margin:2px;transition:border-color var(--tr)}
-.demo-chip:hover{border-color:var(--gold3)}
+.demo-chip{display:inline-block;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:11px;color:var(--gold3);cursor:pointer;margin:2px;transition:border-color var(--tr)}
+.demo-chip:hover{border-color:var(--gold)}
 
 /* APP */
 #view-app{display:none;flex-direction:column;min-height:100vh}
 #view-app.active{display:flex}
 
-.topbar{position:sticky;top:0;z-index:100;background:rgba(15,12,6,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 1.2rem;height:58px;display:flex;align-items:center;justify-content:space-between}
 .topbar-left{display:flex;align-items:center;gap:10px}
-.topbar-icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--gold3);background:var(--dark2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.topbar-icon svg{width:20px;height:20px}
-.topbar-name{font-family:var(--font-d);font-size:1.15rem;color:var(--gold);font-weight:600;letter-spacing:.01em}
+.topbar-icon{width:38px;height:38px;border-radius:50%;border:1px solid var(--border2);background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.topbar-icon img{width:30px;height:30px;object-fit:contain;border-radius:50%}
+.topbar-name{font-family:var(--font-d);font-size:1.15rem;color:var(--ink);font-weight:600;letter-spacing:.01em}
 .topbar-right{display:flex;align-items:center;gap:8px}
-.lang-toggle{background:var(--dark2);border:1px solid var(--border);border-radius:20px;padding:0;cursor:pointer;display:flex;overflow:hidden}
+.lang-toggle{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:0;cursor:pointer;display:flex;overflow:hidden}
 .lang-opt{padding:5px 10px;font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--muted);transition:all var(--tr);border:none;background:transparent;cursor:pointer;font-family:var(--font-b)}
-.lang-opt.active{background:var(--gold);color:var(--dark)}
-.topbar-avatar{width:32px;height:32px;border-radius:50%;background:var(--dark3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--gold);cursor:pointer;letter-spacing:.02em}
+.lang-opt.active{background:var(--dark);color:var(--gold2)}
+.topbar-avatar{width:32px;height:32px;border-radius:50%;background:var(--dark);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--gold2);cursor:pointer;letter-spacing:.02em}
 
-.app-content{flex:1;padding-bottom:80px}
+.app-content{flex:1;padding-bottom:80px;background:var(--white)}
 
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(15,12,6,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;height:66px;padding-bottom:env(safe-area-inset-bottom)}
-.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all var(--tr);position:relative;padding:0}
-.nav-btn::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%) scaleX(0);width:24px;height:2px;background:var(--gold);border-radius:2px;transition:transform var(--tr)}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;height:66px;padding-bottom:env(safe-area-inset-bottom)}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border:none;background:transparent;font-family:var(--font-b);transition:all var(--tr);position:relative;padding:0}
+.nav-btn::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%) scaleX(0);width:24px;height:2px;background:var(--gold);border-radius:0 0 2px 2px;transition:transform var(--tr)}
 .nav-btn.active::after{transform:translateX(-50%) scaleX(1)}
-.nav-icon{font-size:20px;transition:transform var(--tr)}
+.nav-icon{font-size:19px;transition:transform var(--tr)}
 .nav-btn.active .nav-icon{transform:translateY(-1px)}
-.nav-label{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;transition:color var(--tr)}
-.nav-btn.active .nav-label{color:var(--gold)}
+.nav-label{font-size:9px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;transition:color var(--tr)}
+.nav-btn.active .nav-label{color:var(--gold3)}
 
 .screen{display:none;animation:fadeIn .3s ease}
 .screen.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* HOME */
-.home-hero{background:var(--dark2);border-bottom:1px solid var(--border);padding:2rem 1.5rem 1.8rem;position:relative;overflow:hidden}
-.home-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(190,156,97,.08) 0%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(190,156,97,.12);border:1px solid var(--border2);border-radius:20px;padding:4px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin-bottom:1rem}
+.home-hero{background:linear-gradient(160deg,var(--dark) 0%,#2A2218 100%);padding:2rem 1.5rem 2rem;position:relative;overflow:hidden}
+.home-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(190,156,97,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(190,156,97,.12);border:1px solid rgba(190,156,97,.3);border-radius:20px;padding:4px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold3);margin-bottom:1rem}
 .badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero-title{font-family:var(--font-d);font-size:1.9rem;font-weight:600;color:var(--gold);line-height:1.2;margin-bottom:.5rem}
-.hero-sub{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.hero-title{font-family:var(--font-d);font-size:1.9rem;font-weight:600;color:var(--gold2);line-height:1.2;margin-bottom:.5rem}
+.hero-sub{font-size:12px;color:rgba(190,156,97,0.6);letter-spacing:.08em}
 .hero-greeting{font-size:13px;color:var(--gold3);margin-top:1rem}
+
 .home-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-bottom:1px solid var(--border)}
-.stat-cell{background:var(--dark);padding:1rem .8rem;text-align:center}
-.stat-n{font-family:var(--font-d);font-size:1.6rem;color:var(--gold);font-weight:600}
+.stat-cell{background:var(--white);padding:1rem .8rem;text-align:center}
+.stat-n{font-family:var(--font-d);font-size:1.6rem;color:var(--gold3);font-weight:600}
 .stat-l{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
 .section-wrap{padding:1.5rem}
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
 .section-title{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
 .section-link{font-size:11px;color:var(--gold3);cursor:pointer}
-.announce-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr),background var(--tr)}
-.announce-card:hover{border-color:var(--border2);background:var(--dark3)}
+
+.announce-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr),box-shadow var(--tr)}
+.announce-card:hover{border-color:var(--border2);box-shadow:0 2px 12px rgba(154,130,87,.08)}
 .an-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
-.an-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(190,156,97,.12);color:var(--gold3);letter-spacing:.06em;text-transform:uppercase;font-weight:500;flex-shrink:0}
+.an-tag{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--gold4);color:var(--gold3);letter-spacing:.06em;text-transform:uppercase;font-weight:500;flex-shrink:0}
 .an-date{font-size:11px;color:var(--muted)}
-.an-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px;line-height:1.4}
+.an-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;line-height:1.4}
 .an-body{font-size:12px;color:var(--muted);line-height:1.5}
-.event-mini{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;transition:border-color var(--tr)}
+
+.event-mini{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:10px;cursor:pointer;display:flex;gap:1rem;align-items:flex-start;transition:border-color var(--tr)}
 .event-mini:hover{border-color:var(--border2)}
 .event-date-box{text-align:center;flex-shrink:0}
 .ev-month{font-size:10px;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase}
-.ev-day{font-family:var(--font-d);font-size:2rem;color:var(--gold);line-height:1;font-weight:600}
+.ev-day{font-family:var(--font-d);font-size:2rem;color:var(--gold3);line-height:1;font-weight:600}
 .ev-info{flex:1}
-.ev-title{font-size:14px;font-weight:500;color:var(--white);margin-bottom:3px;line-height:1.3}
+.ev-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.3}
 .ev-meta{font-size:11px;color:var(--muted)}
 .ev-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;margin-top:6px;font-weight:500;letter-spacing:.04em}
-.badge-members{background:rgba(190,156,97,.15);color:var(--gold3)}
-.badge-open{background:rgba(29,158,117,.15);color:#5DCAA5}
+.badge-members{background:var(--gold4);color:var(--gold3)}
+.badge-open{background:rgba(29,158,117,.1);color:#1A8060}
 
 /* EVENTS */
 .events-wrap{padding:1.5rem}
-.event-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:1rem;cursor:pointer;transition:border-color var(--tr)}
-.event-card:hover{border-color:var(--border2)}
-.event-card-header{background:var(--dark3);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.event-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;margin-bottom:1rem;cursor:pointer;transition:border-color var(--tr),box-shadow var(--tr)}
+.event-card:hover{border-color:var(--border2);box-shadow:0 4px 20px rgba(154,130,87,.1)}
+.event-card-header{background:var(--dark);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
 .event-card-date{display:flex;align-items:baseline;gap:6px}
 .ecd-month{font-size:11px;color:var(--gold3);letter-spacing:.08em;text-transform:uppercase}
-.ecd-day{font-family:var(--font-d);font-size:2.2rem;color:var(--gold);font-weight:600;line-height:1}
+.ecd-day{font-family:var(--font-d);font-size:2.2rem;color:var(--gold2);font-weight:600;line-height:1}
 .event-card-body{padding:1.2rem}
-.ec-title{font-family:var(--font-d);font-size:1.2rem;color:var(--white);font-weight:500;margin-bottom:4px;line-height:1.3}
+.ec-title{font-family:var(--font-d);font-size:1.2rem;color:var(--ink);font-weight:500;margin-bottom:4px;line-height:1.3}
 .ec-location{font-size:12px;color:var(--muted);margin-bottom:10px}
-.ec-desc{font-size:13px;color:rgba(250,248,244,.7);line-height:1.6;margin-bottom:1rem}
-.ec-rsvp{display:inline-block;padding:9px 20px;background:transparent;border:1px solid var(--gold3);border-radius:var(--r);color:var(--gold);font-size:12px;letter-spacing:.08em;cursor:pointer;font-family:var(--font-b);transition:all var(--tr)}
-.ec-rsvp:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.ec-desc{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:1rem}
+.ec-rsvp{display:inline-block;padding:9px 20px;background:var(--dark);color:var(--gold2);border:none;border-radius:var(--r);font-size:12px;letter-spacing:.08em;cursor:pointer;font-family:var(--font-b);transition:all var(--tr)}
+.ec-rsvp:hover{background:var(--ink2)}
 .empty-state{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:13px}
-.empty-icon{font-size:2.5rem;margin-bottom:.8rem;opacity:.5}
+.empty-icon{font-size:2.5rem;margin-bottom:.8rem;opacity:.4}
 
 /* MEMBERS */
 .members-wrap{padding:1.5rem}
-.member-search{display:flex;align-items:center;gap:10px;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:1.2rem}
-.member-search input{flex:1;background:none;border:none;outline:none;color:var(--white);font-family:var(--font-b);font-size:14px}
+.member-search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:1.2rem}
+.member-search input{flex:1;background:none;border:none;outline:none;color:var(--ink);font-family:var(--font-b);font-size:14px}
 .member-search input::placeholder{color:var(--muted)}
-.member-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr);display:flex;gap:1rem;align-items:flex-start}
-.member-card:hover{border-color:var(--border2)}
-.member-photo{width:56px;height:56px;border-radius:50%;background:var(--dark3);border:1.5px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.2rem;color:var(--gold);flex-shrink:0;overflow:hidden}
+
+.members-group-label{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin:1.2rem 0 .8rem;padding-bottom:6px;border-bottom:1px solid var(--border)}
+
+.member-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:10px;cursor:pointer;transition:border-color var(--tr),box-shadow var(--tr);display:flex;gap:1rem;align-items:flex-start}
+.member-card:hover{border-color:var(--border2);box-shadow:0 2px 16px rgba(154,130,87,.08)}
+.member-photo{width:56px;height:56px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.2rem;color:var(--gold3);flex-shrink:0;overflow:hidden}
 .member-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .member-info{flex:1;min-width:0}
-.member-name{font-family:var(--font-d);font-size:1.1rem;color:var(--white);font-weight:500;margin-bottom:2px}
+.member-name{font-family:var(--font-d);font-size:1.1rem;color:var(--ink);font-weight:500;margin-bottom:2px}
 .member-role-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;font-weight:500;letter-spacing:.05em;margin-bottom:6px}
-.role-chairman{background:rgba(190,156,97,.2);color:var(--gold)}
+.role-chairman{background:rgba(190,156,97,.2);color:var(--gold3)}
 .role-vice{background:rgba(190,156,97,.12);color:var(--gold3)}
-.role-advisor{background:rgba(93,202,165,.12);color:#5DCAA5}
-.role-founding,.role-individual{background:rgba(255,250,240,.06);color:var(--muted)}
-.role-corporate{background:rgba(83,74,183,.15);color:#AFA9EC}
+.role-advisor{background:rgba(29,120,100,.1);color:#1A7860}
+.role-council{background:rgba(83,74,183,.1);color:#534AB7}
+.role-founding,.role-individual{background:var(--surface);color:var(--muted)}
+.role-corporate{background:rgba(83,74,183,.1);color:#534AB7}
 .member-bio{font-size:12px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 /* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(15,12,6,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:flex-end}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(28,24,18,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:flex-end}
 .modal-overlay.open{display:flex;animation:fadeIn .2s ease}
-.modal-sheet{width:100%;max-height:88vh;background:var(--dark2);border-top:1px solid var(--border2);border-radius:24px 24px 0 0;overflow-y:auto;padding:1.5rem;animation:slideUp .3s ease}
+.modal-sheet{width:100%;max-height:88vh;background:var(--white);border-top:1px solid var(--border2);border-radius:24px 24px 0 0;overflow-y:auto;padding:1.5rem;animation:slideUp .3s ease}
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 .modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 1.5rem}
 .modal-member-top{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem}
-.modal-photo{width:72px;height:72px;border-radius:50%;background:var(--dark3);border:2px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.6rem;color:var(--gold);flex-shrink:0;overflow:hidden}
+.modal-photo{width:80px;height:80px;border-radius:50%;background:var(--surface);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.8rem;color:var(--gold3);flex-shrink:0;overflow:hidden}
 .modal-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.modal-name{font-family:var(--font-d);font-size:1.4rem;color:var(--white);font-weight:500;line-height:1.2;margin-bottom:4px}
+.modal-name{font-family:var(--font-d);font-size:1.4rem;color:var(--ink);font-weight:500;line-height:1.2;margin-bottom:4px}
 .modal-role{font-size:12px;color:var(--gold3);letter-spacing:.05em}
-.modal-section-title{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;margin-top:1.2rem}
-.modal-bio{font-size:13px;color:rgba(250,248,244,.8);line-height:1.7}
+.modal-section-title{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;margin-top:1.2rem;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.modal-bio{font-size:13px;color:var(--ink2);line-height:1.7}
 .modal-expertise{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.expertise-tag{font-size:11px;padding:4px 10px;background:var(--dark3);border:1px solid var(--border);border-radius:20px;color:var(--muted)}
-.modal-close{flex-shrink:0;background:var(--dark3);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--muted)}
+.expertise-tag{font-size:11px;padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:20px;color:var(--muted)}
+.modal-close{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--muted)}
 
 /* ABOUT */
-.about-hero{background:var(--dark2);border-bottom:1px solid var(--border);padding:2rem 1.5rem;text-align:center}
-.about-logo{width:80px;height:80px;border-radius:50%;border:1.5px solid var(--gold3);background:var(--dark);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
-.about-logo svg{width:46px;height:46px}
-.about-title{font-family:var(--font-d);font-size:1.8rem;color:var(--gold);font-weight:600;margin-bottom:4px}
-.about-tagline{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.about-hero{background:linear-gradient(160deg,var(--dark) 0%,#2A2218 100%);padding:2rem 1.5rem;text-align:center}
+.about-logo{width:84px;height:84px;border-radius:50%;border:2px solid var(--gold3);background:var(--white);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;overflow:hidden}
+.about-logo img{width:60px;height:60px;object-fit:contain;border-radius:50%}
+.about-title{font-family:var(--font-d);font-size:1.8rem;color:var(--gold2);font-weight:600;margin-bottom:4px}
+.about-tagline{font-size:12px;color:var(--gold3);letter-spacing:.08em}
 .about-wrap{padding:1.5rem}
 .values-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.5rem}
-.value-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.value-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
 .value-icon{font-size:20px;margin-bottom:6px;display:block}
-.value-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px}
+.value-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px}
 .value-desc{font-size:11px;color:var(--muted);line-height:1.5}
 .membership-cards{display:flex;gap:10px;margin-bottom:1.5rem}
-.mem-card{flex:1;background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem}
+.mem-card{flex:1;background:var(--white);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem}
 .mem-card.featured{border-color:var(--gold3)}
 .mem-type{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.mem-price{font-family:var(--font-d);font-size:1.8rem;color:var(--gold);font-weight:600;line-height:1}
+.mem-price{font-family:var(--font-d);font-size:1.8rem;color:var(--gold3);font-weight:600;line-height:1}
 .mem-currency{font-size:13px;color:var(--gold3)}
 .mem-reg{font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px}
 .mem-label{font-size:10px;color:var(--gold3);margin-top:2px}
 .mem-perks{margin-top:10px}
 .mem-perk{font-size:11px;color:var(--muted);padding:2.5px 0;display:flex;gap:6px;align-items:flex-start;line-height:1.4}
 .perk-dot{width:4px;height:4px;border-radius:50%;background:var(--gold3);flex-shrink:0;margin-top:5px}
-.join-cta{background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r2);padding:1.5rem;text-align:center;margin-bottom:1.5rem}
-.join-cta-title{font-family:var(--font-d);font-size:1.3rem;color:var(--gold);margin-bottom:4px;font-weight:500}
-.join-cta-sub{font-size:12px;color:var(--muted);margin-bottom:1.2rem;line-height:1.5}
+.join-cta{background:var(--dark);border-radius:var(--r2);padding:1.5rem;text-align:center;margin-bottom:1.5rem}
+.join-cta-title{font-family:var(--font-d);font-size:1.3rem;color:var(--gold2);margin-bottom:4px;font-weight:500}
+.join-cta-sub{font-size:12px;color:var(--gold3);margin-bottom:1.2rem;line-height:1.5}
 .join-btns{display:flex;gap:10px}
 .btn-wa{flex:1;padding:11px;border-radius:var(--r);background:#1A6335;color:#fff;border:none;font-family:var(--font-b);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--tr);display:flex;align-items:center;justify-content:center;gap:6px}
 .btn-wa:hover{background:#1F7A3E}
-.btn-email{flex:1;padding:11px;border-radius:var(--r);background:transparent;color:var(--gold3);border:1px solid var(--border2);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
-.btn-email:hover{border-color:var(--gold);color:var(--gold)}
+.btn-email{flex:1;padding:11px;border-radius:var(--r);background:transparent;color:var(--gold2);border:1px solid rgba(190,156,97,.4);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
+.btn-email:hover{border-color:var(--gold2);color:var(--gold2)}
+
+/* RULES */
+.rules-wrap{padding:1.5rem}
+.rules-hero{background:linear-gradient(160deg,var(--dark) 0%,#2A2218 100%);padding:1.8rem 1.5rem;margin:-1.5rem -1.5rem 1.5rem;text-align:center}
+.rules-title{font-family:var(--font-d);font-size:1.6rem;color:var(--gold2);font-weight:600;margin-bottom:4px}
+.rules-sub{font-size:12px;color:var(--gold3);letter-spacing:.06em}
+.rule-section{margin-bottom:1.5rem}
+.rule-section-title{font-family:var(--font-d);font-size:1.1rem;color:var(--ink);font-weight:500;margin-bottom:.8rem;padding-bottom:6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.rule-num{width:24px;height:24px;border-radius:50%;background:var(--dark);color:var(--gold2);font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font-b)}
+.rule-text{font-size:13px;color:var(--ink2);line-height:1.7;margin-bottom:.6rem}
+.rule-item{font-size:12px;color:var(--muted);padding:5px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.rule-item-dot{width:5px;height:5px;border-radius:50%;background:var(--gold3);flex-shrink:0;margin-top:6px}
+.rule-highlight{background:var(--gold4);border:1px solid var(--border2);border-radius:var(--r);padding:1rem;margin-top:.8rem}
+.rule-highlight-title{font-size:11px;font-weight:500;color:var(--gold3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.rule-highlight-text{font-size:12px;color:var(--ink2);line-height:1.6}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:.8rem}
+.fee-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:.8rem;text-align:center}
+.fee-rate{font-family:var(--font-d);font-size:1.8rem;color:var(--gold3);font-weight:600}
+.fee-label{font-size:11px;color:var(--muted);margin-top:2px}
+.exempt-tag{display:inline-block;font-size:10px;padding:3px 8px;background:rgba(192,57,43,.08);color:#C0392B;border-radius:6px;border:1px solid rgba(192,57,43,.15);margin:3px}
 
 /* PROFILE */
 .profile-wrap{padding:1.5rem}
-.profile-header{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin-bottom:1.2rem;display:flex;gap:1rem;align-items:center}
-.profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--dark3);border:2px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.5rem;color:var(--gold);flex-shrink:0}
-.profile-name{font-family:var(--font-d);font-size:1.3rem;color:var(--white);font-weight:500}
+.profile-header{background:linear-gradient(160deg,var(--dark) 0%,#2A2218 100%);border-radius:var(--r2);padding:1.5rem;margin-bottom:1.2rem;display:flex;gap:1rem;align-items:center}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:var(--dark);border:2px solid var(--gold3);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.5rem;color:var(--gold2);flex-shrink:0}
+.profile-name{font-family:var(--font-d);font-size:1.3rem;color:var(--gold2);font-weight:500}
 .profile-tier{font-size:11px;color:var(--gold3);margin-top:3px;letter-spacing:.06em}
-.profile-joined{font-size:11px;color:var(--muted);margin-top:3px}
+.profile-joined{font-size:11px;color:rgba(190,156,97,.6);margin-top:3px}
 .dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem}
-.dash-card{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
-.dash-num{font-family:var(--font-d);font-size:2rem;color:var(--gold);font-weight:600}
+.dash-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem}
+.dash-num{font-family:var(--font-d);font-size:2rem;color:var(--gold3);font-weight:600}
 .dash-label{font-size:11px;color:var(--muted);margin-top:2px}
-.upcoming-item{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;gap:12px;align-items:center}
-.upcoming-date{font-family:var(--font-d);font-size:1.4rem;color:var(--gold);font-weight:600;text-align:center;flex-shrink:0;min-width:36px}
-.upcoming-title{font-size:13px;color:var(--white);font-weight:500}
+.upcoming-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;gap:12px;align-items:center}
+.upcoming-date{font-family:var(--font-d);font-size:1.4rem;color:var(--gold3);font-weight:600;text-align:center;flex-shrink:0;min-width:36px}
+.upcoming-title{font-size:13px;color:var(--ink);font-weight:500}
 .upcoming-loc{font-size:11px;color:var(--muted);margin-top:2px}
-.btn-logout{width:100%;margin-top:1.5rem;padding:12px;background:transparent;border:1px solid rgba(229,115,115,.3);border-radius:var(--r);color:rgba(229,115,115,.7);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
-.btn-logout:hover{border-color:rgba(229,115,115,.6);color:#E57373}
+.btn-logout{width:100%;margin-top:1.5rem;padding:12px;background:transparent;border:1px solid rgba(192,57,43,.3);border-radius:var(--r);color:rgba(192,57,43,.7);font-family:var(--font-b);font-size:13px;cursor:pointer;transition:all var(--tr)}
+.btn-logout:hover{border-color:rgba(192,57,43,.6);color:#C0392B}
 
 /* ADMIN */
 .admin-wrap{padding:1.5rem}
-.admin-title{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);font-weight:500}
+.admin-title{font-family:var(--font-d);font-size:1.5rem;color:var(--ink);font-weight:500}
 .admin-sub{font-size:12px;color:var(--muted);margin-top:2px;margin-bottom:1.5rem}
 .admin-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:1.5rem}
-.admin-tab{flex:1;padding:10px 6px;text-align:center;font-size:11px;color:var(--muted);cursor:pointer;background:transparent;border:none;font-family:var(--font-b);letter-spacing:.04em;transition:all var(--tr)}
-.admin-tab.active{background:var(--gold);color:var(--dark);font-weight:500}
+.admin-tab{flex:1;padding:10px 4px;text-align:center;font-size:10px;color:var(--muted);cursor:pointer;background:transparent;border:none;font-family:var(--font-b);letter-spacing:.03em;transition:all var(--tr)}
+.admin-tab.active{background:var(--dark);color:var(--gold2);font-weight:500}
 .admin-content{display:none}
 .admin-content.active{display:block;animation:fadeIn .2s ease}
-.admin-list-item{background:var(--dark2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.admin-list-item{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ali-info{flex:1;min-width:0}
-.ali-title{font-size:13px;color:var(--white);font-weight:500}
+.ali-title{font-size:13px;color:var(--ink);font-weight:500}
 .ali-meta{font-size:11px;color:var(--muted);margin-top:2px}
 .ali-actions{display:flex;gap:6px;flex-shrink:0}
-.btn-del{padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:var(--font-b);background:rgba(229,115,115,.1);color:#E57373;border:1px solid rgba(229,115,115,.2);transition:all var(--tr)}
-.btn-del:hover{background:rgba(229,115,115,.2)}
-.btn-add{width:100%;padding:12px;margin-bottom:1rem;background:var(--dark2);border:1px dashed var(--border2);border-radius:var(--r);color:var(--gold3);font-size:13px;font-family:var(--font-b);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all var(--tr)}
-.btn-add:hover{background:var(--dark3);border-color:var(--gold3)}
-.add-form{background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r2);padding:1.2rem;margin-bottom:1rem;display:none}
+.btn-del{padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:var(--font-b);background:rgba(192,57,43,.08);color:#C0392B;border:1px solid rgba(192,57,43,.2);transition:all var(--tr)}
+.btn-del:hover{background:rgba(192,57,43,.15)}
+.btn-add{width:100%;padding:12px;margin-bottom:1rem;background:var(--white);border:1px dashed var(--border2);border-radius:var(--r);color:var(--gold3);font-size:13px;font-family:var(--font-b);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all var(--tr)}
+.btn-add:hover{background:var(--surface);border-color:var(--gold)}
+.add-form{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r2);padding:1.2rem;margin-bottom:1rem;display:none}
 .add-form.open{display:block;animation:fadeIn .2s ease}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-save{padding:10px 20px;background:var(--gold);color:var(--dark);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--tr)}
-.btn-save:hover{background:var(--gold2)}
+.btn-save{padding:10px 20px;background:var(--dark);color:var(--gold2);border:none;border-radius:var(--r);font-family:var(--font-b);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--tr)}
+.btn-save:hover{background:var(--ink2)}
 .btn-cancel{padding:10px 16px;background:transparent;border:1px solid var(--border);border-radius:var(--r);color:var(--muted);font-family:var(--font-b);font-size:13px;cursor:pointer;margin-left:8px}
 
 .divider{height:1px;background:var(--border);margin:1.2rem 0}
 .text-muted{color:var(--muted);font-size:12px}
 
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark2);border:1px solid var(--border2);border-radius:var(--r);padding:10px 18px;font-size:13px;color:var(--gold);z-index:300;opacity:0;transition:all .3s ease;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);border:1px solid var(--border2);border-radius:var(--r);padding:10px 18px;font-size:13px;color:var(--gold2);z-index:300;opacity:0;transition:all .3s ease;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-.admin-badge{position:absolute;top:8px;right:calc(50% - 18px);width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--dark)}
+.admin-badge{position:absolute;top:8px;right:calc(50% - 18px);width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--white)}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
+<!-- ══════════════════════ LOGIN ══════════════════════ -->
 <div id="view-login" class="view active">
   <div class="login-logo-wrap">
     <div class="login-logo-circle">
-      <svg viewBox="0 0 80 80" fill="none">
-        <circle cx="40" cy="40" r="28" stroke="#BE9C61" stroke-width="1.5"/>
-        <text x="40" y="48" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="23" font-weight="600" fill="#BE9C61">SE</text>
+      <!-- Replace src below with your actual logo URL after deployment -->
+      <svg viewBox="0 0 80 80" fill="none" class="login-logo-img" style="width:70px;height:70px">
+        <circle cx="40" cy="40" r="30" stroke="#BE9C61" stroke-width="1.5"/>
+        <text x="40" y="49" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="26" font-weight="600" fill="#BE9C61">SE</text>
       </svg>
     </div>
     <div class="login-title">SE Business Club</div>
@@ -282,21 +312,21 @@ select.form-input option{background:var(--dark3);color:var(--white)}
     <button class="btn-primary" onclick="doLogin()"><span data-zh="登入" data-en="Sign In">登入</span></button>
     <div class="login-error" id="login-error"></div>
     <div class="login-demo">
-      <div style="margin-bottom:6px;" data-zh="演示账号（点击填入）：" data-en="Demo accounts (click to fill):">演示账号（点击填入）：</div>
-      <span class="demo-chip" onclick="fillDemo('tony@sebusiness.club','admin123')" data-zh="管理员 Admin" data-en="Admin">管理员 Admin</span>
-      <span class="demo-chip" onclick="fillDemo('member@sebusiness.club','member123')" data-zh="普通会员" data-en="Member">普通会员</span>
+      <div style="margin-bottom:6px" data-zh="演示账号（点击填入）：" data-en="Demo accounts (click to fill):">演示账号（点击填入）：</div>
+      <span class="demo-chip" onclick="fillDemo('tony@sebusiness.club','Tony123')">Tony (Admin)</span>
+      <span class="demo-chip" onclick="fillDemo('wangyan@sebusiness.club','Wangyan123')">Wang Yan (Admin)</span>
     </div>
   </div>
 </div>
 
-<!-- APP -->
+<!-- ══════════════════════ APP ══════════════════════ -->
 <div id="view-app" class="view">
   <div class="topbar">
     <div class="topbar-left">
       <div class="topbar-icon">
-        <svg viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="13" stroke="#BE9C61" stroke-width="1"/>
-          <text x="20" y="24" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="10" font-weight="600" fill="#BE9C61">SE</text>
+        <svg viewBox="0 0 40 40" fill="none" style="width:30px;height:30px">
+          <circle cx="20" cy="20" r="14" stroke="#BE9C61" stroke-width="1.2"/>
+          <text x="20" y="25" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="11" font-weight="600" fill="#BE9C61">SE</text>
         </svg>
       </div>
       <div class="topbar-name">SE Business Club</div>
@@ -318,11 +348,11 @@ select.form-input option{background:var(--dark3);color:var(--white)}
         <div class="hero-badge"><span class="badge-dot"></span><span data-zh="创始会员招募中" data-en="Founding Membership Open">创始会员招募中</span></div>
         <div class="hero-title" data-zh="欢迎回来" data-en="Welcome back">欢迎回来</div>
         <div class="hero-greeting" id="hero-greeting"></div>
-        <div class="hero-sub" style="margin-top:6px;" data-zh="新加坡–中国高管联盟 · 邀请制私密平台" data-en="SG–China Executive Alliance · Invitation-only platform">新加坡–中国高管联盟 · 邀请制私密平台</div>
+        <div class="hero-sub" style="margin-top:6px" data-zh="新加坡–中国高管联盟 · 邀请制私密平台" data-en="SG–China Executive Alliance · Invitation-only platform">新加坡–中国高管联盟 · 邀请制私密平台</div>
       </div>
       <div class="home-stats">
         <div class="stat-cell"><div class="stat-n">SG</div><div class="stat-l" data-zh="新加坡" data-en="Singapore">新加坡</div></div>
-        <div class="stat-cell"><div class="stat-n" id="stat-members">3</div><div class="stat-l" data-zh="创始会员" data-en="Founding Members">创始会员</div></div>
+        <div class="stat-cell"><div class="stat-n" id="stat-members">2</div><div class="stat-l" data-zh="核心成员" data-en="Core Members">核心成员</div></div>
         <div class="stat-cell"><div class="stat-n">5%</div><div class="stat-l" data-zh="转介费率" data-en="Referral Rate">转介费率</div></div>
       </div>
       <div class="section-wrap">
@@ -347,7 +377,7 @@ select.form-input option{background:var(--dark3);color:var(--white)}
       <div class="events-wrap">
         <div class="section-head" style="margin-bottom:1.2rem"><div class="section-title" data-zh="活动日历" data-en="Events Calendar">活动日历</div></div>
         <div id="events-list"></div>
-        <div class="empty-state" id="events-empty" style="display:none"><div class="empty-icon">📅</div><div data-zh="活动即将公布，敬请期待" data-en="Events coming soon — stay tuned">活动即将公布，敬请期待</div></div>
+        <div class="empty-state" id="events-empty" style="display:none"><div class="empty-icon">📅</div><div data-zh="活动即将公布，敬请期待" data-en="Events coming soon">活动即将公布，敬请期待</div></div>
       </div>
     </div>
 
@@ -367,9 +397,9 @@ select.form-input option{background:var(--dark3);color:var(--white)}
     <div class="screen" id="screen-about">
       <div class="about-hero">
         <div class="about-logo">
-          <svg viewBox="0 0 80 80" fill="none">
-            <circle cx="40" cy="40" r="28" stroke="#BE9C61" stroke-width="1.5"/>
-            <text x="40" y="48" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="23" font-weight="600" fill="#BE9C61">SE</text>
+          <svg viewBox="0 0 80 80" fill="none" style="width:60px;height:60px">
+            <circle cx="40" cy="40" r="30" stroke="#BE9C61" stroke-width="1.5"/>
+            <text x="40" y="49" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-size="26" font-weight="600" fill="#BE9C61">SE</text>
           </svg>
         </div>
         <div class="about-title">SE Business Club</div>
@@ -381,7 +411,7 @@ select.form-input option{background:var(--dark3);color:var(--white)}
           <div class="value-card"><span class="value-icon">🔒</span><div class="value-name" data-zh="信任" data-en="Trust">信任</div><div class="value-desc" data-zh="严格审核，仅限受邀" data-en="Vetted, invitation-only">严格审核，仅限受邀</div></div>
           <div class="value-card"><span class="value-icon">🌐</span><div class="value-name" data-zh="跨境" data-en="Cross-border">跨境</div><div class="value-desc" data-zh="专注新加坡与中国" data-en="SG–China focused">专注新加坡与中国</div></div>
           <div class="value-card"><span class="value-icon">📋</span><div class="value-name" data-zh="规范" data-en="Structure">规范</div><div class="value-desc" data-zh="清晰的合作框架" data-en="Clear frameworks">清晰的合作框架</div></div>
-          <div class="value-card"><span class="value-icon">🤝</span><div class="value-name" data-zh="长期" data-en="Long-term">长期</div><div class="value-desc" data-zh="着眼长远，非短期利益" data-en="Sustainable relationships">着眼长远，非短期利益</div></div>
+          <div class="value-card"><span class="value-icon">🤝</span><div class="value-name" data-zh="长期" data-en="Long-term">长期</div><div class="value-desc" data-zh="着眼长远合作" data-en="Sustainable relationships">着眼长远合作</div></div>
         </div>
         <div class="divider"></div>
         <div class="section-head"><div class="section-title" data-zh="会员等级" data-en="Membership Tiers">会员等级</div></div>
@@ -398,20 +428,20 @@ select.form-input option{background:var(--dark3);color:var(--white)}
             </div>
           </div>
           <div class="mem-card featured">
-            <div class="mem-type" data-zh="企业会员 (3位代表)" data-en="Corporate (3 reps)">企业会员 (3位代表)</div>
+            <div class="mem-type" data-zh="企业会员 (3位)" data-en="Corporate (3 reps)">企业会员 (3位)</div>
             <div class="mem-price"><span class="mem-currency">S$</span>1,988</div>
             <div class="mem-reg" data-zh="正常价 S$3,688" data-en="Regular S$3,688">正常价 S$3,688</div>
             <div class="mem-label" data-zh="创始优惠价" data-en="Founding rate">创始优惠价</div>
             <div class="mem-perks">
-              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="3位代表全享权益" data-en="All privileges × 3 reps">3位代表全享权益</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="3位代表全享权益" data-en="All privileges × 3">3位代表全享权益</span></div>
               <div class="mem-perk"><span class="perk-dot"></span><span data-zh="品牌曝光优先权" data-en="Brand visibility">品牌曝光优先权</span></div>
-              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="项目洽谈优先" data-en="Priority project briefings">项目洽谈优先</span></div>
+              <div class="mem-perk"><span class="perk-dot"></span><span data-zh="项目洽谈优先" data-en="Priority briefings">项目洽谈优先</span></div>
             </div>
           </div>
         </div>
         <div class="join-cta">
           <div class="join-cta-title" data-zh="申请加入" data-en="Apply for Membership">申请加入</div>
-          <div class="join-cta-sub" data-zh="仅限受邀或现有会员推荐 · 创始名额有限，先到先得" data-en="By invitation or referral only · Limited founding places">仅限受邀或现有会员推荐 · 创始名额有限，先到先得</div>
+          <div class="join-cta-sub" data-zh="仅限受邀或现有会员推荐 · 创始名额有限" data-en="By invitation or referral only · Limited founding places">仅限受邀或现有会员推荐 · 创始名额有限</div>
           <div class="join-btns">
             <button class="btn-wa" onclick="openWA()"><span>💬</span>WhatsApp</button>
             <button class="btn-email" onclick="openEmail()"><span data-zh="发送邮件" data-en="Email Us">发送邮件</span></button>
@@ -419,6 +449,90 @@ select.form-input option{background:var(--dark3);color:var(--white)}
         </div>
         <div class="text-muted" style="text-align:center;padding-bottom:.5rem">
           <a href="mailto:tonyliew@sebusiness.club" style="color:var(--gold3);text-decoration:none;font-size:12px">tonyliew@sebusiness.club</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- RULES & REGULATIONS -->
+    <div class="screen" id="screen-rules">
+      <div class="rules-wrap">
+        <div class="rules-hero">
+          <div class="rules-title" data-zh="会员守则与条例" data-en="Rules & Regulations">会员守则与条例</div>
+          <div class="rules-sub" data-zh="SE Business Club · 资源协同与可持续发展协议" data-en="SE Business Club · Resource Synergy & Sustainability Agreement">SE Business Club · 资源协同与可持续发展协议</div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">1</span><span data-zh="宗旨" data-en="Objectives">宗旨</span></div>
+          <div class="rule-text" data-zh="SE 商务俱乐部旨在为资源共享与商业配对打造高度信任的生态圈。本协议通过透明的行政费用结构，确保俱乐部长期可持续运营，支持集体共同发展。" data-en="The SE Business Club aims to foster a high-trust ecosystem for resource sharing and business matchmaking. This agreement ensures long-term operational sustainability through a transparent administrative fee structure that supports collective growth.">SE 商务俱乐部旨在为资源共享与商业配对打造高度信任的生态圈。本协议通过透明的行政费用结构，确保俱乐部长期可持续运营，支持集体共同发展。</div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">2</span><span data-zh="平台性质" data-en="Nature of Platform">平台性质</span></div>
+          <div class="rule-text" data-zh="俱乐部专为商业网络及资源配对平台，促进会员之间的信息交流与专业合作。" data-en="The Club serves exclusively as a business networking and resource-matching platform facilitating information exchange and professional collaboration.">俱乐部专为商业网络及资源配对平台，促进会员之间的信息交流与专业合作。</div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="非中介身份：俱乐部严格以非中介、非代理、非经纪人身份运营" data-en="Non-Intermediary: The Club operates strictly as non-intermediary, non-agent, and non-broker">非中介身份：俱乐部严格以非中介、非代理、非经纪人身份运营</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="独立性：俱乐部不参与商业交易、价格谈判、合同执行或资金往来" data-en="Independence: The Club does not participate in commercial transactions, negotiations, or fund flows">独立性：俱乐部不参与商业交易、价格谈判、合同执行或资金往来</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="自主性：所有商业决策及尽职调查由相关会员独立进行" data-en="Autonomy: All business decisions and due diligence are conducted independently by members">自主性：所有商业决策及尽职调查由相关会员独立进行</span></div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">3</span><span data-zh="引荐定义" data-en="Definition of Referral">引荐定义</span></div>
+          <div class="rule-text" data-zh='"引荐"指通过俱乐部平台产生的任何商业线索、客户或战略机遇，包括：' data-en='"Referral" means any business lead, client, or strategic opportunity originated through the Club, including:'>"引荐"指通过俱乐部平台产生的任何商业线索、客户或战略机遇，包括：</div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="官方会议、交流活动及晚宴" data-en="Official meetings, networking sessions, and gala events">官方会议、交流活动及晚宴</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="数字通讯渠道（如微信、WhatsApp、企业微信群组）" data-en="Digital channels (e.g., WeChat, WhatsApp, WeCom groups)">数字通讯渠道（如微信、WhatsApp、企业微信群组）</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="由董事会成员或秘书处促成的直接引荐" data-en="Direct introductions facilitated by Board Members or Secretariat">由董事会成员或秘书处促成的直接引荐</span></div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">4</span><span data-zh="费用结构（平台服务费）" data-en="Fee Structure (Platform Service Fee)">费用结构（平台服务费）</span></div>
+          <div class="fee-grid">
+            <div class="fee-card"><div class="fee-rate">5%</div><div class="fee-label" data-zh="标准费率（合同总额）" data-en="Standard rate (contract value)">标准费率（合同总额）</div></div>
+            <div class="fee-card"><div class="fee-rate">14天</div><div class="fee-label" data-zh="付款期限（收款后）" data-en="Payment term (after receipt)">付款期限（收款后）</div></div>
+          </div>
+          <div class="rule-highlight" style="margin-top:10px">
+            <div class="rule-highlight-title" data-zh="高价值项目特别说明" data-en="High-Value Projects">高价值项目特别说明</div>
+            <div class="rule-highlight-text" data-zh="超过 SGD 500,000 的交易，费率将由俱乐部董事会与会员协商调整，以确保商业可行性。" data-en="For transactions exceeding SGD 500,000, the fee structure shall be subject to mutual adjustment with the Club's Board.">超过 SGD 500,000 的交易，费率将由俱乐部董事会与会员协商调整，以确保商业可行性。</div>
+          </div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">5</span><span data-zh="回溯条款（非规避条款）" data-en="Look-Back Provision">回溯条款（非规避条款）</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="保护期：通过俱乐部初次引荐后 12 个月内达成的交易，须缴纳平台服务费" data-en="Protection Period: Transactions concluded within 12 months of the initial introduction are subject to the Platform Service Fee">保护期：通过俱乐部初次引荐后 12 个月内达成的交易，须缴纳平台服务费</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="诚信申报：会员须及时向秘书处申报所有成功引荐，以维护生态圈的诚信与透明度" data-en="Good Faith Reporting: Members are expected to report all successful referrals to the Secretariat in a timely manner">诚信申报：会员须及时向秘书处申报所有成功引荐，以维护生态圈的诚信与透明度</span></div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">6</span><span data-zh="专业及法律豁免" data-en="Professional & Legal Exemptions">专业及法律豁免</span></div>
+          <div class="rule-text" data-zh="以下专业领域严格豁免于本协议的佣金条款：" data-en="The following sectors are strictly exempt from commission-based fees:">以下专业领域严格豁免于本协议的佣金条款：</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+            <span class="exempt-tag" data-zh="法律服务" data-en="Legal Services">法律服务</span>
+            <span class="exempt-tag" data-zh="医疗服务" data-en="Medical Services">医疗服务</span>
+            <span class="exempt-tag" data-zh="教育服务" data-en="Education Services">教育服务</span>
+            <span class="exempt-tag" data-zh="MAS 监管金融活动" data-en="MAS-regulated Financial Activities">MAS 监管金融活动</span>
+          </div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">7</span><span data-zh="资金用途" data-en="Usage of Funds">资金用途</span></div>
+          <div class="rule-highlight">
+            <div class="rule-highlight-title" data-zh="所有收取费用将分配至俱乐部发展基金" data-en="All fees allocated to the Club Development Fund">所有收取费用将分配至俱乐部发展基金</div>
+            <div class="rule-highlight-text">
+              <div class="rule-item" style="margin-top:6px"><span class="rule-item-dot"></span><span data-zh="50% 运营支持：行政管理、平台维护及专业团队" data-en="50% Operational Support: Administration, platform maintenance, professional staff">50% 运营支持：行政管理、平台维护及专业团队</span></div>
+              <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="50% 会员福利：补贴重大活动（如创始晚宴）、高端研讨会及社区公益项目" data-en="50% Member Benefits: Subsidize major events, high-level workshops, and CSR projects">50% 会员福利：补贴重大活动（如创始晚宴）、高端研讨会及社区公益项目</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">8</span><span data-zh="治理架构" data-en="Governance">治理架构</span></div>
+          <div class="rule-text" data-zh="俱乐部由主席及副主席共同监管，负责确保：" data-en="The Club is overseen by the Chairman and Vice Chairman, responsible for:">俱乐部由主席及副主席共同监管，负责确保：</div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="所有引荐机制的透明度与公平性" data-en="Transparency and fairness of all referral mechanisms">所有引荐机制的透明度与公平性</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="俱乐部资源的妥善、合理及经审计使用" data-en="Proper, reasonable, and audited use of Club resources">俱乐部资源的妥善、合理及经审计使用</span></div>
+          <div class="rule-item"><span class="rule-item-dot"></span><span data-zh="会员服务的持续改善与优化" data-en="Continuous improvement and optimization of member services">会员服务的持续改善与优化</span></div>
+        </div>
+
+        <div class="rule-section">
+          <div class="rule-section-title"><span class="rule-num">9</span><span data-zh="最终条款" data-en="Final Provision">最终条款</span></div>
+          <div class="rule-text" data-zh="本框架作为俱乐部商业运营的指导原则，可根据实际情况合理调整。主席及副主席对本协议所有条款保留最终解释权。" data-en="This framework serves as the guiding principle for the Club's commercial operations. Its implementation may be reasonably adjusted. The Chairman and Vice Chairman retain the final right of interpretation.">本框架作为俱乐部商业运营的指导原则，可根据实际情况合理调整。主席及副主席对本协议所有条款保留最终解释权。</div>
         </div>
       </div>
     </div>
@@ -436,72 +550,61 @@ select.form-input option{background:var(--dark3);color:var(--white)}
         <div class="admin-tabs">
           <button class="admin-tab active" onclick="adminTab('members')"><span data-zh="会员" data-en="Members">会员</span></button>
           <button class="admin-tab" onclick="adminTab('events')"><span data-zh="活动" data-en="Events">活动</span></button>
-          <button class="admin-tab" onclick="adminTab('announces')"><span data-zh="公告" data-en="Announcements">公告</span></button>
+          <button class="admin-tab" onclick="adminTab('announces')"><span data-zh="公告" data-en="Announce">公告</span></button>
         </div>
-        <!-- Members -->
         <div class="admin-content active" id="admin-members">
           <button class="btn-add" onclick="toggleForm('add-member-form')"><span>＋</span><span data-zh="添加会员" data-en="Add Member">添加会员</span></button>
           <div class="add-form" id="add-member-form">
             <div class="form-row">
-              <div class="form-group"><label class="form-label" data-zh="姓名" data-en="Name">姓名</label><input class="form-input" id="nm-name" placeholder="Wang Yan"></div>
-              <div class="form-group"><label class="form-label" data-zh="职称（中文）" data-en="Role (ZH)">职称</label><input class="form-input" id="nm-role" placeholder="主席"></div>
+              <div class="form-group"><label class="form-label">姓名 Name</label><input class="form-input" id="nm-name" placeholder="Wang Yan"></div>
+              <div class="form-group"><label class="form-label">职称 Role</label><input class="form-input" id="nm-role" placeholder="主席 Chairman"></div>
             </div>
-            <div class="form-group"><label class="form-label" data-zh="人物简介（中文）" data-en="Bio (Chinese)">人物简介</label><textarea class="form-input" id="nm-bio" rows="3" placeholder="人物简介与故事..."></textarea></div>
-            <div class="form-group"><label class="form-label" data-zh="人物简介（英文）" data-en="Bio (English)">简介（英文）</label><textarea class="form-input" id="nm-bio-en" rows="2" placeholder="English bio..."></textarea></div>
+            <div class="form-group"><label class="form-label">简介（中文）</label><textarea class="form-input" id="nm-bio" placeholder="人物简介..."></textarea></div>
+            <div class="form-group"><label class="form-label">Bio (English)</label><textarea class="form-input" id="nm-bio-en" placeholder="English bio..."></textarea></div>
             <div class="form-row">
-              <div class="form-group"><label class="form-label" data-zh="会员等级" data-en="Tier">等级</label>
+              <div class="form-group"><label class="form-label">等级 Tier</label>
                 <select class="form-input" id="nm-tier">
-                  <option value="founding">创始会员</option>
-                  <option value="corporate">企业会员</option>
-                  <option value="individual">个人会员</option>
-                  <option value="chairman">主席</option>
-                  <option value="vice">副主席</option>
-                  <option value="advisor">顾问</option>
+                  <option value="chairman">主席</option><option value="vice">副主席</option>
+                  <option value="advisor">顾问</option><option value="council">理事</option>
+                  <option value="founding">创始会员</option><option value="corporate">企业会员</option>
                 </select>
               </div>
-              <div class="form-group"><label class="form-label" data-zh="专业领域" data-en="Expertise">专业领域</label><input class="form-input" id="nm-exp" placeholder="教育,跨境,投资"></div>
+              <div class="form-group"><label class="form-label">专业领域</label><input class="form-input" id="nm-exp" placeholder="教育,跨境,投资"></div>
             </div>
-            <button class="btn-save" onclick="addMember()" data-zh="保存" data-en="Save">保存</button>
-            <button class="btn-cancel" onclick="toggleForm('add-member-form')" data-zh="取消" data-en="Cancel">取消</button>
+            <button class="btn-save" onclick="addMember()">保存 Save</button>
+            <button class="btn-cancel" onclick="toggleForm('add-member-form')">取消 Cancel</button>
           </div>
           <div id="admin-members-list"></div>
         </div>
-        <!-- Events -->
         <div class="admin-content" id="admin-events">
           <button class="btn-add" onclick="toggleForm('add-event-form')"><span>＋</span><span data-zh="添加活动" data-en="Add Event">添加活动</span></button>
           <div class="add-form" id="add-event-form">
-            <div class="form-group"><label class="form-label" data-zh="活动名称" data-en="Title">活动名称</label><input class="form-input" id="ne-title" placeholder="创始晚宴"></div>
+            <div class="form-group"><label class="form-label">活动名称</label><input class="form-input" id="ne-title" placeholder="创始晚宴"></div>
             <div class="form-row">
-              <div class="form-group"><label class="form-label" data-zh="日期" data-en="Date">日期</label><input class="form-input" type="date" id="ne-date"></div>
-              <div class="form-group"><label class="form-label" data-zh="类型" data-en="Type">类型</label>
-                <select class="form-input" id="ne-type">
-                  <option value="members" data-zh="会员专属" data-en="Members Only">会员专属</option>
-                  <option value="open" data-zh="公开" data-en="Open">公开</option>
-                </select>
+              <div class="form-group"><label class="form-label">日期</label><input class="form-input" type="date" id="ne-date"></div>
+              <div class="form-group"><label class="form-label">类型</label>
+                <select class="form-input" id="ne-type"><option value="members">会员专属</option><option value="open">公开</option></select>
               </div>
             </div>
-            <div class="form-group"><label class="form-label" data-zh="地点" data-en="Location">地点</label><input class="form-input" id="ne-loc" placeholder="新加坡 · 待定"></div>
-            <div class="form-group"><label class="form-label" data-zh="活动简介" data-en="Description">活动简介</label><input class="form-input" id="ne-desc" placeholder="活动内容介绍..."></div>
-            <button class="btn-save" onclick="addEvent()" data-zh="保存" data-en="Save">保存</button>
-            <button class="btn-cancel" onclick="toggleForm('add-event-form')" data-zh="取消" data-en="Cancel">取消</button>
+            <div class="form-group"><label class="form-label">地点</label><input class="form-input" id="ne-loc" placeholder="新加坡 · 待定"></div>
+            <div class="form-group"><label class="form-label">简介</label><input class="form-input" id="ne-desc" placeholder="活动内容介绍..."></div>
+            <button class="btn-save" onclick="addEvent()">保存</button>
+            <button class="btn-cancel" onclick="toggleForm('add-event-form')">取消</button>
           </div>
           <div id="admin-events-list"></div>
         </div>
-        <!-- Announcements -->
         <div class="admin-content" id="admin-announces">
-          <button class="btn-add" onclick="toggleForm('add-announce-form')"><span>＋</span><span data-zh="发布公告" data-en="Post Announcement">发布公告</span></button>
+          <button class="btn-add" onclick="toggleForm('add-announce-form')"><span>＋</span><span data-zh="发布公告" data-en="Publish">发布公告</span></button>
           <div class="add-form" id="add-announce-form">
             <div class="form-row">
-              <div class="form-group"><label class="form-label" data-zh="标题" data-en="Title">标题</label><input class="form-input" id="na-title" placeholder="公告标题"></div>
-              <div class="form-group"><label class="form-label" data-zh="标签" data-en="Tag">标签</label>
-                <select class="form-input" id="na-tag">
-                  <option>活动</option><option>会员</option><option>重要</option><option>通知</option>
-                </select>
+              <div class="form-group"><label class="form-label">标题</label><input class="form-input" id="na-title" placeholder="公告标题"></div>
+              <div class="form-group"><label class="form-label">标签</label>
+                <select class="form-input" id="na-tag"><option>活动</option><option>会员</option><option>重要</option><option>通知</option></select>
               </div>
             </div>
-            <div class="form-group"><label class="form-label" data-zh="内容" data-en="Content">内容</label><textarea class="form-input" id="na-body" rows="3" placeholder="公告内容..."></textarea></div>
-            <button class="btn-save" onclick="addAnnouncement()" data-zh="发布" data-en="Publish">发布</button>
-            <button class="btn-cancel" onclick="toggleForm('add-announce-form')" data-zh="取消" data-en="Cancel">取消</button>
+            <div class="form-group"><label class="form-label">内容</label><textarea class="form-input" id="na-body" placeholder="公告内容..."></textarea></div>
+            <button class="btn-save" onclick="addAnnouncement()">发布</button>
+            <button class="btn-cancel" onclick="toggleForm('add-announce-form')">取消</button>
           </div>
           <div id="admin-announces-list"></div>
         </div>
@@ -523,6 +626,9 @@ select.form-input option{background:var(--dark3);color:var(--white)}
     <button class="nav-btn" id="nav-about" onclick="showTab('about')">
       <span class="nav-icon">📋</span><span class="nav-label" data-zh="关于" data-en="About">关于</span>
     </button>
+    <button class="nav-btn" id="nav-rules" onclick="showTab('rules')">
+      <span class="nav-icon">📜</span><span class="nav-label" data-zh="守则" data-en="Rules">守则</span>
+    </button>
     <button class="nav-btn" id="nav-admin" onclick="showTab('admin')" style="display:none;position:relative">
       <span class="nav-icon">⚙️</span><span class="nav-label" data-zh="管理" data-en="Admin">管理</span>
       <span class="admin-badge"></span>
@@ -542,24 +648,49 @@ select.form-input option{background:var(--dark3);color:var(--white)}
 let currentUser=null,currentLang='zh',nextId=200;
 
 const USERS={
-  'tony@sebusiness.club':{pass:'admin123',role:'admin',name:'Tony Liew',initials:'TL',joinDate:'2025年5月',tier:'创始会员（副主席）'},
-  'member@sebusiness.club':{pass:'member123',role:'member',name:'Wang Yan',initials:'WY',joinDate:'2025年5月',tier:'创始会员（主席）'}
+  'tony@sebusiness.club':{pass:'Tony123',role:'admin',name:'Tony Liew',initials:'TL',joinDate:'2025年5月',tier:'创始会员（副主席）'},
+  'tonyliew@sebusiness.club':{pass:'Tony123',role:'admin',name:'Tony Liew',initials:'TL',joinDate:'2025年5月',tier:'创始会员（副主席）'},
+  'wangyan@sebusiness.club':{pass:'Wangyan123',role:'admin',name:'Wang Yan',initials:'WY',joinDate:'2025年5月',tier:'创始会员（主席）'}
 };
 
 let DATA={
   members:[
     {id:1,name:'Wang Yan',nameZh:'王燕',initials:'WY',role:'主席 Chairman',roleEn:'Chairman',tier:'chairman',
      bio:'王燕在跨境教育与企业发展领域深耕多年，在新加坡与中国两地建立了深厚的商业人脉与影响力。她以坚定的信念推动新中两地的商业合作，相信高质量的人脉关系是跨境成功的根本。作为 SE 商务俱乐部的创始主席，她致力于打造一个基于信任、开放与长远视野的精英商业生态圈。',
-     bioEn:'Wang Yan has built deep expertise in cross-border education and enterprise development between Singapore and China. She believes high-quality relationships are the foundation of cross-border success, and as Founding Chairman of SE Business Club, she is committed to building a trust-based elite business ecosystem.',
+     bioEn:'Wang Yan has built deep expertise in cross-border education and enterprise development between Singapore and China. She believes high-quality relationships are the foundation of cross-border success. As Founding Chairman of SE Business Club, she is committed to building a trust-based elite business ecosystem.',
      expertise:['跨境教育','企业发展','新中商业','人脉建设'],photo:null},
     {id:2,name:'Tony Liew',nameZh:'刘先生',initials:'TL',role:'副主席 Vice Chairman',roleEn:'Vice Chairman',tier:'vice',
      bio:'Tony Liew 是新加坡商业生态圈中极具经验的咨询顾问，专注于帮助中国企业进入新加坡市场，以及协助本地企业拓展海外版图。他深谙新加坡的监管环境、商业文化与执行逻辑，多年来参与了众多国际市场拓展项目，是跨境商业结构设计领域的专家。',
      bioEn:'Tony Liew is an experienced Singapore-based business consultant specializing in cross-border market expansion and business structure design. He has guided numerous enterprises through Singapore\'s regulatory landscape and helped local businesses expand internationally.',
      expertise:['新加坡市场','跨境架构','合规咨询','商业策略'],photo:null},
-    {id:3,name:'Vincent',nameZh:'Vincent',initials:'V',role:'创始会员 · 红杉资本股东',roleEn:'Founding Member · Hongshan Capital',tier:'corporate',
-     bio:'Vincent 作为红杉资本的股东，将专业的资本视野与丰富的投资经验带入 SE 商务俱乐部。他深入理解投资结构、尽职调查流程与资本配置策略，积极协助会员把握新加坡与中国两地的融资与增长机遇，并为俱乐部提供宝贵的市场洞见。',
-     bioEn:'Vincent brings sophisticated capital expertise as a Hongshan Capital shareholder. He provides strategic investment insights on market trends, valuation and capital allocation, actively supporting members in accessing growth and funding opportunities across Singapore and China.',
-     expertise:['资本投资','私募基金','市场分析','跨境融资'],photo:null}
+    {id:3,name:'Dr. Chua Chee Lay',nameZh:'蔡智来博士',initials:'CC',role:'顾问 | 教育与文化',roleEn:'Advisor | Education & Culture',tier:'advisor',
+     bio:'蔡智来博士是杰出的教育工作者与文化顾问，在学术及机构平台积累了丰富的跨文化研究与政策制定经验。他是多位新加坡政要的华文导师，现任新加坡人工智能教育与领导力协会主席。2024年，他因杰出贡献获得总统颁授的公共服务奖章（PBM）。他专注于将传统教育与人工智能创新相融合，为俱乐部的教育与文化项目提供战略指引。',
+     bioEn:'Dr. Chua Chee Lay is a distinguished educator and cultural consultant with extensive cross-cultural research and policy-making experience. He serves as Chinese language mentor to several Singapore dignitaries and is President of the Singapore AI Education & Leadership Association. Awarded the Public Service Medal (PBM) by President Tharman in 2024, he specializes in bridging traditional education with AI innovation.',
+     expertise:['教育','文化','AI创新','政策制定'],photo:null},
+    {id:4,name:'Dr. John Chia',nameZh:'谢医生',initials:'JC',role:'顾问 | 医疗健康',roleEn:'Advisor | Healthcare',tier:'advisor',
+     bio:'谢医生是鹰阁医院居里肿瘤科的高级肿瘤专家，拥有逾二十年的临床实践与癌症研究经验。他曾担任新加坡国立癌症中心妇科肿瘤科主任，积极推动医疗创新与国际研究合作，现为新加坡百汇独立伦理委员会成员，负责监督临床研究的审查与批准。在俱乐部中，他以深厚的医学专业知识确保会员医疗项目符合严格的临床与道德标准。',
+     bioEn:'Dr. John Chia is a senior oncologist at Mount Elizabeth Hospital Curie Oncology with over twenty years of clinical and cancer research experience. Former Chief of Gynaecology Oncology at the National Cancer Centre Singapore, he is an Executive Committee member of the Medical Board and member of the Parkway Independent Ethics Committee.',
+     expertise:['肿瘤医学','临床研究','医疗创新','医学伦理'],photo:null},
+    {id:5,name:'Arthur Yap',nameZh:'叶先生',initials:'AY',role:'顾问 | 法律事务',roleEn:'Advisor | Legal Affairs',tier:'advisor',
+     bio:'Arthur Yap 是 Oaks Legal LLC 诉讼部总监兼争议解决主管，在处理复杂的商业、建筑及知识产权纠纷方面经验丰富。他以将法律与技术视角相融合、制定清晰有效战略方向的能力广受认可。作为新加坡仲裁学会（SIArb）会员，他亦是新加坡国际仲裁中心知识产权仲裁员名册成员，在俱乐部中提供关键法律监督与战略法律顾问服务。',
+     bioEn:'Arthur Yap is a Director in the Litigation Department and Head of Dispute Resolution at Oaks Legal LLC. A Fellow of the Singapore Institute of Arbitrators (SIArb) and member of SIAC\'s Intellectual Property Arbitrators panel, he provides critical legal oversight and strategic counsel, ensuring member ventures are protected by robust legal frameworks.',
+     expertise:['商业诉讼','争议解决','知识产权','仲裁'],photo:null},
+    {id:6,name:'Denon Lim',nameZh:'林先生',initials:'DL',role:'顾问 | 媒体与出版',roleEn:'Advisor | Media & Publishing',tier:'advisor',
+     bio:'林先生是灵子传媒总裁兼总编辑，同时担任新加坡作家协会荣誉会长，在媒体、出版与文学推广领域拥有逾三十年丰富经验，被誉为新加坡最具代表性的诗人与文化实践者之一。他曾荣获新加坡金笔奖中文诗歌类一等奖及二等奖，2020年获得香港荣誉文学贡献奖，并在第四届白荷全球诗歌大赛中荣获一等奖。在俱乐部中，他专注于文化项目规划、品牌叙事开发及媒体策略，为会员企业提供融合文化深度与市场视野的洞见。',
+     bioEn:'Denon Lim is President and Chief Editor of Lingzi Media and Honorary President of the Singapore Association of Writers. With over three decades in media, publishing and literary promotion, he is widely regarded as one of Singapore\'s representative poets. He focuses on cultural project planning, brand narrative development, and media strategy within the Club.',
+     expertise:['媒体','出版','文化策划','品牌叙事'],photo:null},
+    {id:7,name:'Top Yang (Yang Jintao)',nameZh:'杨先生（杨劲涛）',initials:'TY',role:'顾问 | 投资与资本',roleEn:'Advisor | Investment & Capital',tier:'advisor',
+     bio:'杨劲涛先生是资深投资专家及跨境资本运营专家，拥有逾二十年的投资与高级企业管理经验。他曾在中信证券及中金公司等顶级券商担任投资经理，并在多家A股上市公司担任董事及董事会秘书等核心领导职务。他在中国（A股）、新加坡、日本及澳大利亚等多个市场成功主导大型上市及投资项目，在俱乐部中负责资本战略监督与项目投资评估。',
+     bioEn:'Mr. Yang Jintao is a veteran investment specialist with over twenty years of experience at top-tier firms including Citic Securities and CICC. He has led major listing and investment projects across China (A-shares), Singapore, Japan, and Australia. Within the Club, he oversees capital strategy and project investment evaluations.',
+     expertise:['资本投资','跨境融资','上市策略','企业治理'],photo:null},
+    {id:8,name:'Yoyo Liu (Liu Yingxia)',nameZh:'刘女士（刘映霞）',initials:'YL',role:'理事 | 人力资源',roleEn:'HR Council Member',tier:'council',
+     bio:'刘映霞女士在亚太区餐饮、科技及人力资本领域拥有逾20年的丰富经验，善于将半导体行业的系统化精准思维与市场洞察相结合，实现规模化增长。她目前在新加坡经营五家高端餐厅，并创立了 Minyo International 和 MinyoTech，在人力资源合规与AI数字化转型方面具有深厚专业积累。作为东南亚新生代女性企业家的代表人物，她致力于通过高标准执行推动团队成长。',
+     bioEn:'Liu Yingxia possesses over 20 years of Asia-Pacific experience across F&B, technology, and human capital sectors. She currently operates five premium restaurants in Singapore and founded Minyo International and MinyoTech, bringing deep expertise in HR compliance and AI digital transformation. A representative of Southeast Asia\'s new generation of female entrepreneurs.',
+     expertise:['人力资源','餐饮管理','AI数字化','精准营销'],photo:null},
+    {id:9,name:'TaoYing',nameZh:'陶颖',initials:'TY2',role:'理事 | 活动统筹',roleEn:'Event Council Member',tier:'council',
+     bio:'陶颖是 Broth & Beyond 的创始人，深耕新加坡与马来西亚市场逾20年，拥有丰富的本地生活方式与商业经验，对区域消费文化和高端餐饮市场有深刻理解。她从艺术起步，凭借对美学与细节的高度敏感，成功转型餐饮行业，迅速建立独特的品牌视角与产品体系。在运营层面，她统筹品牌管理、门店运营及团队建设，在人才培育和服务体系架构方面尤为出色。在其领导下，Broth & Beyond 已成为高质量生活与社交体验的知名品牌。',
+     bioEn:'Tao Ying, founder of Broth & Beyond, has cultivated the Singapore and Malaysia markets for over 20 years. Beginning her career in the arts, she transitioned into F&B with a unique brand perspective. She oversees brand management, outlet operations, and team building, with particular strength in talent development and service system architecture.',
+     expertise:['活动策划','餐饮品牌','消费市场','团队管理'],photo:null}
   ],
   events:[],
   announcements:[
@@ -575,12 +706,8 @@ function doLogin(){
   const pass=document.getElementById('login-pass').value;
   const err=document.getElementById('login-error');
   const u=USERS[email];
-  if(u&&u.pass===pass){
-    currentUser={email,...u};err.style.display='none';enterApp();
-  }else{
-    err.style.display='block';
-    err.textContent=currentLang==='zh'?'邮件或密码有误，请重试。':'Incorrect email or password.';
-  }
+  if(u&&u.pass===pass){currentUser={email,...u};err.style.display='none';enterApp();}
+  else{err.style.display='block';err.textContent=currentLang==='zh'?'邮件或密码有误，请重试。':'Incorrect email or password.';}
 }
 document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});
 
@@ -616,6 +743,7 @@ function setLang(l){
 }
 function updateLang(){
   document.querySelectorAll('[data-zh]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='TEXTAREA')return;
     el.textContent=currentLang==='zh'?el.dataset.zh:el.dataset.en;
   });
 }
@@ -636,13 +764,8 @@ function goProfile(){
   renderProfile();
 }
 
-// RENDER ALL
-function renderAll(){
-  renderHomeAnnounces();renderHomeEvents();renderEventsList();renderMembers();
-  if(currentUser?.role==='admin')renderAdminLists();
-}
+function renderAll(){renderHomeAnnounces();renderHomeEvents();renderEventsList();renderMembers();if(currentUser?.role==='admin')renderAdminLists();}
 
-// HOME ANNOUNCES
 function renderHomeAnnounces(){
   document.getElementById('home-announces').innerHTML=DATA.announcements.slice(0,2).map(a=>`
     <div class="announce-card">
@@ -652,37 +775,28 @@ function renderHomeAnnounces(){
     </div>`).join('');
 }
 
-// HOME EVENTS
 function renderHomeEvents(){
   const c=document.getElementById('home-events'),empty=document.getElementById('home-events-empty');
   if(!DATA.events.length){c.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
   c.innerHTML=DATA.events.slice(0,2).map(ev=>{
     const d=ev.date?new Date(ev.date):null;
-    const day=d?d.getDate():'—';
-    const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—';
     return `<div class="event-mini">
-      <div class="event-date-box"><div class="ev-month">${month}</div><div class="ev-day">${day}</div></div>
-      <div class="ev-info">
-        <div class="ev-title">${ev.title}</div>
-        <div class="ev-meta">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div>
-        <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
-      </div></div>`;
+      <div class="event-date-box"><div class="ev-month">${d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—'}</div><div class="ev-day">${d?d.getDate():'—'}</div></div>
+      <div class="ev-info"><div class="ev-title">${ev.title}</div><div class="ev-meta">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div>
+      <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span></div></div>`;
   }).join('');
 }
 
-// EVENTS LIST
 function renderEventsList(){
   const c=document.getElementById('events-list'),empty=document.getElementById('events-empty');
   if(!DATA.events.length){c.innerHTML='';empty.style.display='block';return;}
   empty.style.display='none';
   c.innerHTML=DATA.events.map(ev=>{
     const d=ev.date?new Date(ev.date):null;
-    const day=d?d.getDate():'TBC';
-    const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}).toUpperCase():'—';
     return `<div class="event-card">
       <div class="event-card-header">
-        <div class="event-card-date"><span class="ecd-month">${month}</span><span class="ecd-day">${day}</span></div>
+        <div class="event-card-date"><span class="ecd-month">${d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}).toUpperCase():'—'}</span><span class="ecd-day">${d?d.getDate():'TBC'}</span></div>
         <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
       </div>
       <div class="event-card-body">
@@ -694,28 +808,42 @@ function renderEventsList(){
   }).join('');
 }
 
-// MEMBERS
 function renderMembers(){
   const q=(document.getElementById('member-search-input')?.value||'').toLowerCase();
   const filtered=DATA.members.filter(m=>m.name.toLowerCase().includes(q)||(m.nameZh||'').includes(q)||m.role.toLowerCase().includes(q));
-  document.getElementById('members-list').innerHTML=filtered.map(m=>`
-    <div class="member-card" onclick="openMemberModal(${m.id})">
-      <div class="member-photo">${m.photo?`<img src="${m.photo}" alt="${m.name}">`:(m.initials||'?')}</div>
-      <div class="member-info">
-        <div class="member-name">${m.name}${m.nameZh&&m.nameZh!==m.name?` <span style="font-size:.85em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
-        <span class="member-role-badge role-${m.tier}">${currentLang==='zh'?m.role:(m.roleEn||m.role)}</span>
-        <div class="member-bio">${currentLang==='zh'?m.bio:(m.bioEn||m.bio)}</div>
-      </div></div>`).join('');
+
+  // Group by tier order
+  const groups=[
+    {key:['chairman','vice'],labelZh:'主席团',labelEn:'Leadership'},
+    {key:['advisor'],labelZh:'顾问',labelEn:'Advisors'},
+    {key:['council'],labelZh:'理事',labelEn:'Council Members'},
+    {key:['founding','corporate','individual'],labelZh:'创始会员',labelEn:'Founding Members'}
+  ];
+
+  let html='';
+  groups.forEach(g=>{
+    const items=filtered.filter(m=>g.key.includes(m.tier));
+    if(!items.length)return;
+    html+=`<div class="members-group-label">${currentLang==='zh'?g.labelZh:g.labelEn}</div>`;
+    html+=items.map(m=>`
+      <div class="member-card" onclick="openMemberModal(${m.id})">
+        <div class="member-photo">${m.photo?`<img src="${m.photo}" alt="${m.name}">`:(m.initials||'?')}</div>
+        <div class="member-info">
+          <div class="member-name">${m.name}${m.nameZh&&m.nameZh!==m.name?` <span style="font-size:.82em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
+          <span class="member-role-badge role-${m.tier}">${currentLang==='zh'?m.role:(m.roleEn||m.role)}</span>
+          <div class="member-bio">${currentLang==='zh'?m.bio:(m.bioEn||m.bio)}</div>
+        </div></div>`).join('');
+  });
+  document.getElementById('members-list').innerHTML=html||`<div class="empty-state"><div class="empty-icon">👥</div><div>${currentLang==='zh'?'没有找到相关会员':'No members found'}</div></div>`;
 }
 
-// MODAL
 function openMemberModal(id){
   const m=DATA.members.find(x=>x.id===id);if(!m)return;
   document.getElementById('modal-inner').innerHTML=`
     <div class="modal-member-top">
       <div class="modal-photo">${m.photo?`<img src="${m.photo}" alt="${m.name}">`:m.initials}</div>
       <div style="flex:1">
-        <div class="modal-name">${m.name}${m.nameZh&&m.nameZh!==m.name?`<br><span style="font-size:.75em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
+        <div class="modal-name">${m.name}${m.nameZh&&m.nameZh!==m.name?`<br><span style="font-size:.72em;color:var(--muted)">${m.nameZh}</span>`:''}</div>
         <div class="modal-role">${currentLang==='zh'?m.role:(m.roleEn||m.role)}</div>
       </div>
       <div class="modal-close" onclick="closeMemberModal()">✕</div>
@@ -726,12 +854,8 @@ function openMemberModal(id){
     <div class="modal-expertise">${m.expertise.map(e=>`<span class="expertise-tag">${e}</span>`).join('')}</div>`:''}`;
   document.getElementById('member-modal').classList.add('open');
 }
-function closeMemberModal(e){
-  if(!e||e.target===document.getElementById('member-modal'))
-    document.getElementById('member-modal').classList.remove('open');
-}
+function closeMemberModal(e){if(!e||e.target===document.getElementById('member-modal'))document.getElementById('member-modal').classList.remove('open');}
 
-// PROFILE
 function renderProfile(){
   if(!currentUser)return;
   document.getElementById('profile-content').innerHTML=`
@@ -748,37 +872,23 @@ function renderProfile(){
       <div class="dash-card"><div class="dash-num">0</div><div class="dash-label">${currentLang==='zh'?'洽谈中项目':'Active projects'}</div></div>
     </div>
     <div class="section-head" style="margin-bottom:.8rem"><div class="section-title">${currentLang==='zh'?'我的活动':'My Events'}</div></div>
-    ${DATA.events.length?DATA.events.slice(0,3).map(ev=>{
-      const d=ev.date?new Date(ev.date):null;
-      return `<div class="upcoming-item">
-        <div class="upcoming-date">${d?d.getDate():'—'}</div>
-        <div><div class="upcoming-title">${ev.title}</div><div class="upcoming-loc">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div></div>
-      </div>`;
-    }).join(''):`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无已报名活动':'No events registered yet'}</div>`}
+    ${DATA.events.length?DATA.events.slice(0,3).map(ev=>{const d=ev.date?new Date(ev.date):null;return`<div class="upcoming-item"><div class="upcoming-date">${d?d.getDate():'—'}</div><div><div class="upcoming-title">${ev.title}</div><div class="upcoming-loc">${ev.location||(currentLang==='zh'?'地点待定':'TBC')}</div></div></div>`;}).join(''):`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无已报名活动':'No events registered yet'}</div>`}
     <div class="section-head" style="margin-top:1.2rem;margin-bottom:.8rem"><div class="section-title">${currentLang==='zh'?'洽谈中项目':'Projects in Discussion'}</div></div>
     <div class="text-muted" style="padding:.5rem 0 1rem">${currentLang==='zh'?'暂无项目。由管理员分配后将在此显示。':'No projects yet. Admin will assign when available.'}</div>
     <button class="btn-logout" onclick="doLogout()">${currentLang==='zh'?'退出登入':'Sign Out'}</button>`;
 }
 
-// ADMIN
 function renderAdminLists(){
   document.getElementById('admin-members-list').innerHTML=DATA.members.map(m=>`
     <div class="admin-list-item">
       <div class="ali-info"><div class="ali-title">${m.name}</div><div class="ali-meta">${m.role}</div></div>
-      <div class="ali-actions"><button class="btn-del" onclick="deleteMember(${m.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
+      <div class="ali-actions"><button class="btn-del" onclick="deleteMember(${m.id})">${currentLang==='zh'?'删除':'Del'}</button></div>
     </div>`).join('');
   document.getElementById('admin-events-list').innerHTML=DATA.events.length
-    ?DATA.events.map(ev=>`
-      <div class="admin-list-item">
-        <div class="ali-info"><div class="ali-title">${ev.title}</div><div class="ali-meta">${ev.date||'TBC'} · ${ev.location||'—'}</div></div>
-        <div class="ali-actions"><button class="btn-del" onclick="deleteEvent(${ev.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
-      </div>`)
-    .join(''):`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无活动':'No events yet'}</div>`;
+    ?DATA.events.map(ev=>`<div class="admin-list-item"><div class="ali-info"><div class="ali-title">${ev.title}</div><div class="ali-meta">${ev.date||'TBC'} · ${ev.location||'—'}</div></div><div class="ali-actions"><button class="btn-del" onclick="deleteEvent(${ev.id})">删除</button></div></div>`).join('')
+    :`<div class="text-muted" style="padding:1rem 0">${currentLang==='zh'?'暂无活动':'No events yet'}</div>`;
   document.getElementById('admin-announces-list').innerHTML=DATA.announcements.map(a=>`
-    <div class="admin-list-item">
-      <div class="ali-info"><div class="ali-title">${a.title}</div><div class="ali-meta">${a.tag} · ${a.date}</div></div>
-      <div class="ali-actions"><button class="btn-del" onclick="deleteAnnouncement(${a.id})">${currentLang==='zh'?'删除':'Delete'}</button></div>
-    </div>`).join('');
+    <div class="admin-list-item"><div class="ali-info"><div class="ali-title">${a.title}</div><div class="ali-meta">${a.tag} · ${a.date}</div></div><div class="ali-actions"><button class="btn-del" onclick="deleteAnnouncement(${a.id})">删除</button></div></div>`).join('');
 }
 
 function adminTab(tab){
@@ -787,52 +897,35 @@ function adminTab(tab){
   tabs.forEach(t=>document.getElementById('admin-'+t).classList.toggle('active',t===tab));
 }
 
-// CRUD
+let nextIdLocal=200;
 function addMember(){
   const name=document.getElementById('nm-name').value.trim();
   if(!name){showToast(currentLang==='zh'?'请填写姓名':'Please enter a name');return;}
-  DATA.members.push({
-    id:nextId++,name,nameZh:name,
-    initials:name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2),
-    role:document.getElementById('nm-role').value||'会员',
-    roleEn:document.getElementById('nm-role').value||'Member',
-    tier:document.getElementById('nm-tier').value,
-    bio:document.getElementById('nm-bio').value,
-    bioEn:document.getElementById('nm-bio-en').value,
-    expertise:document.getElementById('nm-exp').value.split(',').map(s=>s.trim()).filter(Boolean),
-    photo:null
-  });
+  DATA.members.push({id:nextIdLocal++,name,nameZh:name,initials:name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2),role:document.getElementById('nm-role').value||'会员',roleEn:document.getElementById('nm-role').value||'Member',tier:document.getElementById('nm-tier').value,bio:document.getElementById('nm-bio').value,bioEn:document.getElementById('nm-bio-en').value,expertise:document.getElementById('nm-exp').value.split(',').map(s=>s.trim()).filter(Boolean),photo:null});
   ['nm-name','nm-role','nm-bio','nm-bio-en','nm-exp'].forEach(id=>document.getElementById(id).value='');
   toggleForm('add-member-form');renderAll();
-  document.getElementById('stat-members').textContent=DATA.members.length;
+  document.getElementById('stat-members').textContent=DATA.members.filter(m=>['chairman','vice'].includes(m.tier)).length;
   showToast(currentLang==='zh'?'✓ 会员已添加':'✓ Member added');
 }
-function deleteMember(id){
-  DATA.members=DATA.members.filter(m=>m.id!==id);renderAll();
-  document.getElementById('stat-members').textContent=DATA.members.length;
-  showToast(currentLang==='zh'?'已删除':'Deleted');
-}
+function deleteMember(id){DATA.members=DATA.members.filter(m=>m.id!==id);renderAll();showToast(currentLang==='zh'?'已删除':'Deleted')}
 function addEvent(){
   const title=document.getElementById('ne-title').value.trim();
   if(!title){showToast(currentLang==='zh'?'请填写活动名称':'Please enter a title');return;}
-  DATA.events.push({id:nextId++,title,date:document.getElementById('ne-date').value,location:document.getElementById('ne-loc').value,desc:document.getElementById('ne-desc').value,type:document.getElementById('ne-type').value});
+  DATA.events.push({id:nextIdLocal++,title,date:document.getElementById('ne-date').value,location:document.getElementById('ne-loc').value,desc:document.getElementById('ne-desc').value,type:document.getElementById('ne-type').value});
   ['ne-title','ne-date','ne-loc','ne-desc'].forEach(id=>document.getElementById(id).value='');
-  toggleForm('add-event-form');renderAll();
-  showToast(currentLang==='zh'?'✓ 活动已添加':'✓ Event added');
+  toggleForm('add-event-form');renderAll();showToast(currentLang==='zh'?'✓ 活动已添加':'✓ Event added');
 }
 function deleteEvent(id){DATA.events=DATA.events.filter(e=>e.id!==id);renderAll();showToast(currentLang==='zh'?'已删除':'Deleted')}
 function addAnnouncement(){
   const title=document.getElementById('na-title').value.trim();
   if(!title){showToast(currentLang==='zh'?'请填写标题':'Please enter a title');return;}
   const now=new Date();
-  DATA.announcements.unshift({id:nextId++,tag:document.getElementById('na-tag').value,tagEn:document.getElementById('na-tag').value,title,titleEn:title,body:document.getElementById('na-body').value,bodyEn:document.getElementById('na-body').value,date:`${now.getFullYear()}年${now.getMonth()+1}月`});
+  DATA.announcements.unshift({id:nextIdLocal++,tag:document.getElementById('na-tag').value,tagEn:document.getElementById('na-tag').value,title,titleEn:title,body:document.getElementById('na-body').value,bodyEn:document.getElementById('na-body').value,date:`${now.getFullYear()}年${now.getMonth()+1}月`});
   ['na-title','na-body'].forEach(id=>document.getElementById(id).value='');
-  toggleForm('add-announce-form');renderAll();
-  showToast(currentLang==='zh'?'✓ 公告已发布':'✓ Announcement published');
+  toggleForm('add-announce-form');renderAll();showToast(currentLang==='zh'?'✓ 公告已发布':'✓ Published');
 }
 function deleteAnnouncement(id){DATA.announcements=DATA.announcements.filter(a=>a.id!==id);renderAll();showToast(currentLang==='zh'?'已删除':'Deleted')}
 
-// HELPERS
 function toggleForm(id){document.getElementById(id).classList.toggle('open')}
 function rsvpEvent(){openWA();showToast(currentLang==='zh'?'正在跳转 WhatsApp...':'Opening WhatsApp...')}
 function openWA(){window.open('https://wa.me/6594454566?text='+encodeURIComponent(currentLang==='zh'?'您好，我有意加入 SE Business Club，请问如何申请？':'Hello, I am interested in joining SE Business Club. How may I apply?'),'_blank')}
