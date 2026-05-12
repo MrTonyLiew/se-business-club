@@ -780,13 +780,13 @@ function renderHomeEvents(){
     const d=ev.date?new Date(ev.date):null;
     const title=currentLang==='zh'?(ev.titleZh||ev.title):ev.title;
     const loc=currentLang==='zh'?(ev.locationZh||ev.location||'地点待定'):(ev.location||'TBC');
-    const monthStr=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—';
+    const monthStr=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'long'}):'—';
     const yearStr=d?d.getFullYear():'';
     return `<div class="event-mini" onclick="showTab('events')">
-      <div class="event-date-box">
-        <div class="ev-month">${monthStr}</div>
-        <div class="ev-day">${d?d.getDate():'—'}</div>
-        <div style="font-size:10px;color:var(--gold3);letter-spacing:.04em;margin-top:1px">${yearStr}</div>
+      <div class="event-date-box" style="min-width:52px">
+        <div class="ev-month" style="font-size:11px;line-height:1.3">${monthStr}</div>
+        <div style="font-size:10px;color:var(--gold3);letter-spacing:.04em;margin-top:2px">${yearStr}</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:3px">${currentLang==='zh'?'待定':'TBD'}</div>
       </div>
       <div class="ev-info"><div class="ev-title">${title}</div><div class="ev-meta">${loc}</div>
       <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span></div></div>`;
@@ -802,14 +802,14 @@ function renderEventsList(){
     const title=currentLang==='zh'?(ev.titleZh||ev.title):ev.title;
     const loc=currentLang==='zh'?(ev.locationZh||ev.location||'地点待定'):(ev.location||'Venue TBC');
     const desc=currentLang==='zh'?(ev.descZh||ev.desc||''):(ev.desc||'');
-    const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}).toUpperCase():'—';
+    const monthLong=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'long'}):'—';
     const year=d?d.getFullYear():'';
+    const tbdLabel=currentLang==='zh'?'日期待定':'Date TBD';
     return `<div class="event-card">
       <div class="event-card-header">
-        <div class="event-card-date">
-          <span class="ecd-month">${month}</span>
-          <span class="ecd-day">${d?d.getDate():'TBC'}</span>
-          <span style="font-size:11px;color:var(--gold3);margin-left:4px;letter-spacing:.04em">${year}</span>
+        <div class="event-card-date" style="flex-direction:column;align-items:flex-start;gap:2px">
+          <span class="ecd-month" style="font-size:13px">${monthLong} ${year}</span>
+          <span style="font-size:10px;color:var(--muted);letter-spacing:.04em">${tbdLabel}</span>
         </div>
         <div style="text-align:right">
           <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}" style="display:block;margin-bottom:4px">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
