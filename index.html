@@ -352,7 +352,7 @@ textarea.form-input{resize:vertical;min-height:80px}
       </div>
       <div class="home-stats">
         <div class="stat-cell"><div class="stat-n">SG</div><div class="stat-l" data-zh="新加坡" data-en="Singapore">新加坡</div></div>
-        <div class="stat-cell"><div class="stat-n" id="stat-members">9</div><div class="stat-l" data-zh="俱乐部成员" data-en="Club Members">俱乐部成员</div></div>
+        <div class="stat-cell"><div class="stat-n" id="stat-members">10</div><div class="stat-l" data-zh="俱乐部成员" data-en="Club Members">俱乐部成员</div></div>
         <div class="stat-cell"><div class="stat-n">5%</div><div class="stat-l" data-zh="转介费率" data-en="Referral Rate">转介费率</div></div>
       </div>
       <div class="section-wrap">
@@ -642,42 +642,46 @@ const USERS={
 
 let DATA={
   members:[
-    {id:1,name:'Wang Yan',nameZh:'王燕',initials:'WY',role:'主席 Chairman',roleEn:'Chairman',tier:'chairman',
-     bio:'王燕在跨境教育与企业发展领域深耕多年，在新加坡与中国两地建立了深厚的商业人脉与影响力。她以坚定的信念推动新中两地的商业合作，相信高质量的人脉关系是跨境成功的根本。作为 SE 商务俱乐部的创始主席，她致力于打造一个基于信任、开放与长远视野的精英商业生态圈。',
-     bioEn:'Wang Yan has built deep expertise in cross-border education and enterprise development between Singapore and China. She believes high-quality relationships are the foundation of cross-border success. As Founding Chairman of SE Business Club, she is committed to building a trust-based elite business ecosystem.',
-     expertise:['跨境教育','企业发展','新中商业','人脉建设'],photo:null},
-    {id:2,name:'Tony Liew',nameZh:'刘先生',initials:'TL',role:'副主席 Vice Chairman',roleEn:'Vice Chairman',tier:'vice',
-     bio:'Tony Liew 是新加坡商业生态圈中极具经验的咨询顾问，专注于帮助中国企业进入新加坡市场，以及协助本地企业拓展海外版图。他深谙新加坡的监管环境、商业文化与执行逻辑，多年来参与了众多国际市场拓展项目，是跨境商业结构设计领域的专家。',
-     bioEn:'Tony Liew is an experienced Singapore-based business consultant specializing in cross-border market expansion and business structure design. He has guided numerous enterprises through Singapore\'s regulatory landscape and helped local businesses expand internationally.',
-     expertise:['新加坡市场','跨境架构','合规咨询','商业策略'],photo:null},
-    {id:3,name:'Dr. Chua Chee Lay',nameZh:'蔡智来博士',initials:'CC',role:'顾问 | 教育与文化',roleEn:'Advisor | Education & Culture',tier:'advisor',
-     bio:'蔡智来博士是杰出的教育工作者与文化顾问，在学术及机构平台积累了丰富的跨文化研究与政策制定经验。他是多位新加坡政要的华文导师，现任新加坡人工智能教育与领导力协会主席。2024年，他因杰出贡献获得总统颁授的公共服务奖章（PBM）。他专注于将传统教育与人工智能创新相融合，为俱乐部的教育与文化项目提供战略指引。',
-     bioEn:'Dr. Chua Chee Lay is a distinguished educator and cultural consultant with extensive cross-cultural research and policy-making experience. He serves as Chinese language mentor to several Singapore dignitaries and is President of the Singapore AI Education & Leadership Association. Awarded the Public Service Medal (PBM) by President Tharman in 2024, he specializes in bridging traditional education with AI innovation.',
-     expertise:['教育','文化','AI创新','政策制定'],photo:null},
-    {id:4,name:'Dr. John Chia',nameZh:'谢医生',initials:'JC',role:'顾问 | 医疗健康',roleEn:'Advisor | Healthcare',tier:'advisor',
-     bio:'谢医生是鹰阁医院居里肿瘤科的高级肿瘤专家，拥有逾二十年的临床实践与癌症研究经验。他曾担任新加坡国立癌症中心妇科肿瘤科主任，积极推动医疗创新与国际研究合作，现为新加坡百汇独立伦理委员会成员，负责监督临床研究的审查与批准。在俱乐部中，他以深厚的医学专业知识确保会员医疗项目符合严格的临床与道德标准。',
-     bioEn:'Dr. John Chia is a senior oncologist at Mount Elizabeth Hospital Curie Oncology with over twenty years of clinical and cancer research experience. Former Chief of Gynaecology Oncology at the National Cancer Centre Singapore, he is an Executive Committee member of the Medical Board and member of the Parkway Independent Ethics Committee.',
-     expertise:['肿瘤医学','临床研究','医疗创新','医学伦理'],photo:null},
-    {id:5,name:'Arthur Yap',nameZh:'叶先生',initials:'AY',role:'顾问 | 法律事务',roleEn:'Advisor | Legal Affairs',tier:'advisor',
-     bio:'Arthur Yap 是 Oaks Legal LLC 诉讼部总监兼争议解决主管，在处理复杂的商业、建筑及知识产权纠纷方面经验丰富。他以将法律与技术视角相融合、制定清晰有效战略方向的能力广受认可。作为新加坡仲裁学会（SIArb）会员，他亦是新加坡国际仲裁中心知识产权仲裁员名册成员，在俱乐部中提供关键法律监督与战略法律顾问服务。',
-     bioEn:'Arthur Yap is a Director in the Litigation Department and Head of Dispute Resolution at Oaks Legal LLC. A Fellow of the Singapore Institute of Arbitrators (SIArb) and member of SIAC\'s Intellectual Property Arbitrators panel, he provides critical legal oversight and strategic counsel, ensuring member ventures are protected by robust legal frameworks.',
+    {id:1,name:'Wang Yan',nameZh:'王燕女士',initials:'WY',role:'主席 Chairman',roleEn:'Chairman',tier:'chairman',
+     bio:'王燕女士拥有丰富的新加坡和中国的跨境经验，长期专注于教育战略、组织视角和基于价值观的领导力发展。过去十年，她受邀在100多场公共和私人活动中发表演讲，与企业主、高管和跨境家庭探讨如何清晰地做出决策并制定长期发展规划。作为一家总部位于中国的教育咨询公司的创始人，她领导着一支运营团队，致力于帮助家庭规划跨境教育途径，顺利进入新加坡，并在各个机构和社区之间建立值得信赖的网络，同时不断拓展机构的服务能力。在新加坡企业商务俱乐部，她提供治理层面的视角和跨区域的洞察，从而加强俱乐部生态系统的战略方向、信任度和长期稳定性。',
+     bioEn:'Wang Yan has rich cross-border experience between Singapore and China, with long-term focus on education strategy, organisational perspective, and values-based leadership development. Over the past decade, she has been invited to speak at over 100 public and private events. As founder of an education consulting firm headquartered in China, she leads an operations team dedicated to helping families plan cross-border education pathways into Singapore. At SE Business Club, she provides governance-level perspective and cross-regional insights to strengthen the Club\'s strategic direction, trust and long-term stability.',
+     expertise:['教育战略','领导力发展','跨境咨询','组织治理'],photo:null},
+    {id:2,name:'Tony Liew',nameZh:'刘权仪先生',initials:'TL',role:'副主席 Vice Chairman',roleEn:'Vice Chairman',tier:'vice',
+     bio:'Tony 是一位国际运营与扩张战略专家，在美国、新加坡、马来西亚和中国拥有超过25年的领导经验，横跨餐饮、零售及特许经营生态系统。他管理超过33个运营单元，在包括滨海湾金沙（MBS）及国际餐饮集团在内的高绩效环境中，推动收入增长、数字化转型、结构优化和跨境扩张。在新加坡企业商务俱乐部，他的职责重心是将战略方向转化为可落地的执行框架，确保商业项目的可行性与可衡量的业绩成果。',
+     bioEn:'Tony is an international operations and expansion strategy expert with over 25 years of leadership experience across the United States, Singapore, Malaysia and China, spanning F&B, retail and franchise ecosystems. He has managed over 33 operational units including Marina Bay Sands (MBS) and international F&B groups. At SE Business Club, his core responsibility is translating strategic direction into executable frameworks, ensuring commercial viability and measurable business outcomes.',
+     expertise:['国际运营','扩张战略','餐饮零售','数字化转型'],photo:null},
+    {id:3,name:'Dr. Chua Chee Lay',nameZh:'蔡志礼博士',initials:'CC',role:'顾问 | 教育与文化',roleEn:'Advisor | Education & Culture',tier:'advisor',
+     bio:'蔡志礼博士是杰出的教育家和文化顾问，在学术与机构平台拥有丰富经验。他为教育发展、政策制定及跨文化研究做出了卓越贡献。蔡博士曾担任多位新加坡政要的华语导师，现任新加坡人工智能教育与领导力协会会长。由于其对社会的杰出贡献，蔡博士于2024年荣获总统尚达曼阁下颁授的公共服务奖章（PBM）。他擅长将传统教育与AI创新相结合，为俱乐部的教育与文化发展提供前瞻性的战略指导。',
+     bioEn:'Dr. Chua Chee Lay is a distinguished educator and cultural consultant with extensive experience across academic and institutional platforms. He serves as Chinese language mentor to several Singapore dignitaries and is President of the Singapore AI Education & Leadership Association. He was awarded the Public Service Medal (PBM) by President Tharman Shanmugaratnam in 2024, and specialises in bridging traditional education with AI innovation.',
+     expertise:['教育发展','文化顾问','AI创新','政策制定'],photo:null},
+    {id:4,name:'Dr. John Chia',nameZh:'谢医生',initials:'JC',role:'顾问 | 医疗保健',roleEn:'Advisor | Healthcare',tier:'advisor',
+     bio:'Dr. John Chia 是新加坡伊丽莎白医院Curie Oncology的资深肿瘤学家，拥有二十余年的临床实践与癌症研究经验。他积极参与推动医学创新及国际研究项目，曾担任该院肿瘤委员会主席，以及新加坡国家癌症中心（NCCS）妇科肿瘤科主任，现任医疗委员会执行委员。他同时也是百汇独立伦理委员会成员，负责监督医院系统内临床研究的审查与批准。在俱乐部中，他利用深厚的医疗专业知识确保会员的医疗项目符合严谨的临床与伦理标准。',
+     bioEn:'Dr. John Chia is a senior oncologist at Mount Elizabeth Hospital Curie Oncology, with over twenty years of experience in clinical practice and cancer research. Former Chief of Gynaecology Oncology at the National Cancer Centre Singapore (NCCS) and Executive Committee member of the Medical Board, he is also a member of the Parkway Independent Ethics Committee overseeing clinical research review and approval.',
+     expertise:['肿瘤医学','临床研究','医学伦理','医疗创新'],photo:null},
+    {id:5,name:'Arthur Yap',nameZh:'叶律师',initials:'AY',role:'顾问 | 法律事务',roleEn:'Advisor | Legal Affairs',tier:'advisor',
+     bio:'Arthur Yap 是 Oaks Legal LLC 诉讼部的主任及争议解决主管。他在处理复杂的商业、建筑及知识产权事务方面拥有深厚经验，以能够融会贯通技术与法律视角、制定清晰战略方向而著称。作为新加坡仲裁人协会资深会员（SIArb），他也是新加坡国际仲裁中心（SIAC）知识产权仲裁员名册成员。在俱乐部中，他提供关键的法律监督与战略建议，确保会员项目在稳健的法律框架下运行并有效管理风险。',
+     bioEn:'Arthur Yap is a Director in the Litigation Department and Head of Dispute Resolution at Oaks Legal LLC. He possesses extensive experience in complex commercial, construction, and intellectual property matters. As a Fellow of the Singapore Institute of Arbitrators (SIArb) and member of the SIAC Intellectual Property Arbitrators panel, he provides critical legal oversight and strategic counsel within the Club.',
      expertise:['商业诉讼','争议解决','知识产权','仲裁'],photo:null},
-    {id:6,name:'Denon Lim',nameZh:'林先生',initials:'DL',role:'顾问 | 媒体与出版',roleEn:'Advisor | Media & Publishing',tier:'advisor',
-     bio:'林先生是灵子传媒总裁兼总编辑，同时担任新加坡作家协会荣誉会长，在媒体、出版与文学推广领域拥有逾三十年丰富经验，被誉为新加坡最具代表性的诗人与文化实践者之一。他曾荣获新加坡金笔奖中文诗歌类一等奖及二等奖，2020年获得香港荣誉文学贡献奖，并在第四届白荷全球诗歌大赛中荣获一等奖。在俱乐部中，他专注于文化项目规划、品牌叙事开发及媒体策略，为会员企业提供融合文化深度与市场视野的洞见。',
-     bioEn:'Denon Lim is President and Chief Editor of Lingzi Media and Honorary President of the Singapore Association of Writers. With over three decades in media, publishing and literary promotion, he is widely regarded as one of Singapore\'s representative poets. He focuses on cultural project planning, brand narrative development, and media strategy within the Club.',
-     expertise:['媒体','出版','文化策划','品牌叙事'],photo:null},
-    {id:7,name:'Top Yang (Yang Jintao)',nameZh:'杨先生（杨劲涛）',initials:'TY',role:'顾问 | 投资与资本',roleEn:'Advisor | Investment & Capital',tier:'advisor',
-     bio:'杨劲涛先生是资深投资专家及跨境资本运营专家，拥有逾二十年的投资与高级企业管理经验。他曾在中信证券及中金公司等顶级券商担任投资经理，并在多家A股上市公司担任董事及董事会秘书等核心领导职务。他在中国（A股）、新加坡、日本及澳大利亚等多个市场成功主导大型上市及投资项目，在俱乐部中负责资本战略监督与项目投资评估。',
-     bioEn:'Mr. Yang Jintao is a veteran investment specialist with over twenty years of experience at top-tier firms including Citic Securities and CICC. He has led major listing and investment projects across China (A-shares), Singapore, Japan, and Australia. Within the Club, he oversees capital strategy and project investment evaluations.',
-     expertise:['资本投资','跨境融资','上市策略','企业治理'],photo:null},
-    {id:8,name:'Yoyo Liu (Liu Yingxia)',nameZh:'刘女士（刘映霞）',initials:'YL',role:'理事 | 人力资源',roleEn:'HR Council Member',tier:'council',
-     bio:'刘映霞女士在亚太区餐饮、科技及人力资本领域拥有逾20年的丰富经验，善于将半导体行业的系统化精准思维与市场洞察相结合，实现规模化增长。她目前在新加坡经营五家高端餐厅，并创立了 Minyo International 和 MinyoTech，在人力资源合规与AI数字化转型方面具有深厚专业积累。作为东南亚新生代女性企业家的代表人物，她致力于通过高标准执行推动团队成长。',
-     bioEn:'Liu Yingxia possesses over 20 years of Asia-Pacific experience across F&B, technology, and human capital sectors. She currently operates five premium restaurants in Singapore and founded Minyo International and MinyoTech, bringing deep expertise in HR compliance and AI digital transformation. A representative of Southeast Asia\'s new generation of female entrepreneurs.',
-     expertise:['人力资源','餐饮管理','AI数字化','精准营销'],photo:null},
-    {id:9,name:'TaoYing',nameZh:'陶颖',initials:'TY2',role:'理事 | 活动统筹',roleEn:'Event Council Member',tier:'council',
-     bio:'陶颖是 Broth & Beyond 的创始人，深耕新加坡与马来西亚市场逾20年，拥有丰富的本地生活方式与商业经验，对区域消费文化和高端餐饮市场有深刻理解。她从艺术起步，凭借对美学与细节的高度敏感，成功转型餐饮行业，迅速建立独特的品牌视角与产品体系。在运营层面，她统筹品牌管理、门店运营及团队建设，在人才培育和服务体系架构方面尤为出色。在其领导下，Broth & Beyond 已成为高质量生活与社交体验的知名品牌。',
-     bioEn:'Tao Ying, founder of Broth & Beyond, has cultivated the Singapore and Malaysia markets for over 20 years. Beginning her career in the arts, she transitioned into F&B with a unique brand perspective. She oversees brand management, outlet operations, and team building, with particular strength in talent development and service system architecture.',
-     expertise:['活动策划','餐饮品牌','消费市场','团队管理'],photo:null}
+    {id:6,name:'Denon Lim',nameZh:'林得楠先生',initials:'DL',role:'顾问 | 媒体与出版',roleEn:'Advisor | Media & Publishing',tier:'advisor',
+     bio:'林得楠先生为玲子传媒出版社社长兼总编辑、新加坡作家协会荣誉会长，拥有逾三十年的媒体、出版及文学推广经验，是新加坡具代表性的诗人与文化工作者之一。他曾荣获新加坡金笔奖华文诗歌组第一奖（2003年）及第二奖（2001年），并于2020年荣获香港首届紫荆花诗歌贡献奖，2024年荣获第四届紫荆花全球诗歌奖一等奖。林得楠先生著有多部诗集与儿童文学作品，并主编多种文学选集，长期参与区域华文文学奖项评审工作。在俱乐部事务中，他主要负责文化项目策划、品牌故事建构及媒体传播策略，为会员企业提供兼具文化深度与市场视角的综合建议。',
+     bioEn:'Mr Denon Lim is the President and Chief Editor of Lingzi Media and Honorary President of the Singapore Association of Writers. With over three decades in media, publishing and literary promotion, he is widely regarded as one of Singapore\'s representative poets. He focuses on cultural project planning, brand narrative development, and media strategy, providing member enterprises with insights that integrate cultural depth and market perspective.',
+     expertise:['媒体传播','文化策划','品牌叙事','出版'],photo:null},
+    {id:7,name:'Top Yang (Yang Jintao)',nameZh:'杨金涛先生',initials:'TY',role:'顾问 | 投融资与资本运作',roleEn:'Advisor | Investment & Capital',tier:'advisor',
+     bio:'杨金涛先生是资深投融资专家与跨国资本运作操盘手，拥有超过二十年的投融资及上市公司核心管理经验。他曾任职于顶级券商中信证券与中金公司（CICC）担任投资经理，并历任 A 股上市公司核心管理层（董事、董事会秘书），深谙全球多层次资本市场运作规则与合规治理。杨先生拥有丰富的跨国资本运作实战经验，曾强势主导并完成横跨中国（A股）、新加坡、日本、澳大利亚等多个国家与地区的上市与重点投资项目。在俱乐部中，他主要负责资本战略监督与项目投融资评估，为会员企业在资本市场的稳健运行与资源整合提供前瞻性的战略指导。',
+     bioEn:'Mr. Yang Jintao is a veteran investment and financing specialist with over twenty years of experience at top-tier firms including Citic Securities and CICC. He has held core leadership roles as Director and Board Secretary for A-share listed companies and has led major listing and investment projects across China, Singapore, Japan and Australia. Within the Club, he is responsible for capital strategy oversight and project investment evaluations.',
+     expertise:['资本运作','投融资','上市策略','跨境资本'],photo:null},
+    {id:8,name:'Yoyo Liu (Liu Yingxia)',nameZh:'刘颖霞女士',initials:'YL',role:'理事',roleEn:'Council Member',tier:'council',
+     bio:'刘颖霞，多品牌餐饮集团创始人，拥有超过20年的亚太地区跨行业实战经验，业务横跨科技、人力资源与餐饮领域。她擅长将半导体精密思维与敏锐的市场洞察相结合，实现业务从0到1的快速成长与规模化扩张。作为新一代女性创业者的代表，刘女士在新加坡成功打造并运营五家高端餐饮门店，包括知名湘菜品牌"王小赞湖南菜"及社交空间 YC Dining & Bar。同时，她创立了 Minyo International 与 MinyoTech，在人力资源合规、AI 自动化及企业数字化转型方面拥有深厚的专业背景。她通过精准营销与技术赋能，曾帮助企业提升高达30%的运营效率，致力于以高标准的执行力驱动团队成长，为会员及顾客提供卓越的商业与服务体验。',
+     bioEn:'Liu Yingxia is the founder of a multi-brand F&B group with over 20 years of Asia-Pacific cross-industry experience. She operates five premium F&B outlets in Singapore including the well-known Hunanese brand "Wang Xiao Xian" and YC Dining & Bar. She founded Minyo International and MinyoTech, bringing deep expertise in HR compliance, AI automation and enterprise digital transformation, having helped businesses improve operational efficiency by up to 30%.',
+     expertise:['餐饮运营','人力资源','AI数字化','品牌建设'],photo:null},
+    {id:9,name:'TaoYing',nameZh:'陶莹女士',initials:'TY2',role:'理事',roleEn:'Council Member',tier:'council',
+     bio:'陶莹，汤之境（Broth & Beyond）创始人，长期深耕新加坡及马来西亚市场，拥有超过20年的本地生活与商业经验，对区域消费文化及高端餐饮市场有深刻理解。其职业生涯起步于艺术领域，凭借对美学与细节的高度敏感，成功跨界进入餐饮行业，并迅速建立起独特的品牌视角与产品体系。她专注于产品研发与创新，将审美、文化与餐饮体验融合，打造兼具品质与文化表达的用餐场景。在企业运营层面，陶莹全面负责品牌管理、门店经营及团队建设，尤其擅长人才培养与服务体系搭建。在她的领导下，汤之境逐步发展为兼具市场影响力与口碑的餐饮品牌，成为高品质生活方式与社交场景的代表之一。',
+     bioEn:'Tao Ying, founder of Broth & Beyond, has deeply cultivated the Singapore and Malaysia markets for over 20 years. Beginning her career in the arts, she transitioned into F&B with a unique brand perspective focused on product R&D and innovation merging aesthetics, culture and dining. She oversees brand management, outlet operations and team building, with particular strength in talent development and service system architecture.',
+     expertise:['活动策划','餐饮品牌','消费市场','团队管理'],photo:null},
+    {id:10,name:'Benson Tong',nameZh:'唐本陞先生',initials:'BT',role:'理事',roleEn:'Council Member',tier:'council',
+     bio:'Benson Tong 是一位常驻新加坡的战略家和餐饮企业家，他巧妙地将烹饪艺术与商业盈利能力完美结合。他拥有丰富的经验，曾在新加坡航空公司和多家高端餐饮集团担任领导职务，为餐饮行业带来了高度自律、系统化的方法。Benson 不仅关注厨房，更擅长构建可扩展的商业模式和强大的研发框架，助力品牌在整个区域高效扩张。目前，他掌管着 R&B Grill Bar，并已成为高端商业整合的关键顾问，尤其擅长通过战略性的白酒项目，推动中国白酒文化的现代化。对于俱乐部而言，Benson 是会员们寻求将传统客之道转化为高影响力、可持续且可扩展的商业项目的重要桥梁。',
+     bioEn:'Benson Tong is a Singapore-based strategist and F&B entrepreneur who masterfully combines culinary artistry with commercial profitability. With extensive experience at Singapore Airlines and multiple premium F&B groups, he brings a highly disciplined, systematic approach. He currently manages R&B Grill Bar and serves as a key advisor for premium business integration, particularly in advancing Chinese baijiu culture through strategic projects. For the Club, Benson bridges traditional hospitality with high-impact, scalable business ventures.',
+     expertise:['餐饮战略','品牌扩张','商业整合','白酒文化'],photo:null}
   ],
   events:[
     {id:101,title:'Founding Dinner',titleZh:'创始晚宴',date:'2026-09-01',location:'Private Venue, Singapore',locationZh:'私密场所，新加坡',time:'7pm – 10pm',desc:'An invitation-only founding gathering to formally establish SE Business Club\'s governance framework and strategic direction. The evening will bring together founding members for an exclusive networking dinner.',descZh:'邀请制创始聚会，正式确立 SE 商务俱乐部的治理框架与战略方向。这个夜晚将汇聚创始会员，共赴专属晚宴。',type:'members'},
@@ -776,8 +780,14 @@ function renderHomeEvents(){
     const d=ev.date?new Date(ev.date):null;
     const title=currentLang==='zh'?(ev.titleZh||ev.title):ev.title;
     const loc=currentLang==='zh'?(ev.locationZh||ev.location||'地点待定'):(ev.location||'TBC');
+    const monthStr=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—';
+    const yearStr=d?d.getFullYear():'';
     return `<div class="event-mini" onclick="showTab('events')">
-      <div class="event-date-box"><div class="ev-month">${d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}):'—'}</div><div class="ev-day">${d?d.getDate():'—'}</div></div>
+      <div class="event-date-box">
+        <div class="ev-month">${monthStr}</div>
+        <div class="ev-day">${d?d.getDate():'—'}</div>
+        <div style="font-size:10px;color:var(--gold3);letter-spacing:.04em;margin-top:1px">${yearStr}</div>
+      </div>
       <div class="ev-info"><div class="ev-title">${title}</div><div class="ev-meta">${loc}</div>
       <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span></div></div>`;
   }).join('');
@@ -793,9 +803,14 @@ function renderEventsList(){
     const loc=currentLang==='zh'?(ev.locationZh||ev.location||'地点待定'):(ev.location||'Venue TBC');
     const desc=currentLang==='zh'?(ev.descZh||ev.desc||''):(ev.desc||'');
     const month=d?d.toLocaleString(currentLang==='zh'?'zh-CN':'en-US',{month:'short'}).toUpperCase():'—';
+    const year=d?d.getFullYear():'';
     return `<div class="event-card">
       <div class="event-card-header">
-        <div class="event-card-date"><span class="ecd-month">${month}</span><span class="ecd-day">${d?d.getDate():'TBC'}</span></div>
+        <div class="event-card-date">
+          <span class="ecd-month">${month}</span>
+          <span class="ecd-day">${d?d.getDate():'TBC'}</span>
+          <span style="font-size:11px;color:var(--gold3);margin-left:4px;letter-spacing:.04em">${year}</span>
+        </div>
         <div style="text-align:right">
           <span class="ev-badge ${ev.type==='open'?'badge-open':'badge-members'}" style="display:block;margin-bottom:4px">${ev.type==='open'?(currentLang==='zh'?'公开':'Open'):(currentLang==='zh'?'会员专属':'Members Only')}</span>
           ${ev.time?`<span style="font-size:10px;color:var(--gold3);letter-spacing:.04em">${ev.time}</span>`:''}
